@@ -24,7 +24,7 @@
 	<!-- Подключаемые Шрифты -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 	<!-- Подключаемые Иконки -->
 	<link rel="stylesheet" type="text/css" href="/design/icomoon.css?design=THEMENAME" />
 	<!-- Основные Стили магазина для всех страниц -->
@@ -81,8 +81,20 @@
 			<!-- Шапка. Верхняя часть -->
 			<div class="header__top">
 				<div class="container">
-					<div class="header__inner flex">
-						
+					<div class="header__inner flex">						
+						<!-- Логотип -->
+						<div class="header__logo" itemscope itemtype="http://schema.org/Organization">
+							<a href="{INDEX_PAGE_URL}" title="{SETTINGS_STORE_NAME}" itemprop="url">
+								<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="182" height="54">
+								<meta itemprop="image" content="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME">
+								<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
+								<meta itemprop="telephone" content="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
+								<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+									<meta itemprop="addressLocality" content="{SETTINGS_STORE_REGION}" />
+								</span>
+							</a>
+						</div>
+
 						<!-- Шапка. Меню -->
 						<div class="header__menu">
 							<div class="mainnav__icon">
@@ -149,18 +161,6 @@
 			<div class="header__middle">
 				<div class="container">
 					<div class="header__inner flex">
-						<!-- Логотип -->
-						<div class="header__logo" itemscope itemtype="http://schema.org/Organization">
-							<a href="{INDEX_PAGE_URL}" title="{SETTINGS_STORE_NAME}" itemprop="url">
-								<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="182" height="54">
-								<meta itemprop="image" content="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME">
-								<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
-								<meta itemprop="telephone" content="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
-								<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-									<meta itemprop="addressLocality" content="{SETTINGS_STORE_REGION}" />
-								</span>
-							</a>
-						</div>
 
 						<!-- Поиск -->
 						<div class="header__search search" itemscope itemtype="https://schema.org/WebSite">
@@ -489,7 +489,7 @@
 										<div class="product__addCart">
 											<!-- Добавление в корзину -->
 											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_favorites_goods.MAX_REST_VALUE=0 %}
-											<a class="add-notify button-tertiary"
+											<a class="add-notify button-empty"
 												title="Уведомить"
 												data-tooltip="Уведомить"
 												rel="nofollow"
@@ -761,7 +761,7 @@
 										<div class="product__addCart">
 											<!-- Добавление в корзину -->
 											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_sale_goods.MAX_REST_VALUE=0 %}
-											<a class="add-notify button-tertiary"
+											<a class="add-notify button-empty"
 												title="Уведомить"
 												data-tooltip="Уведомить"
 												rel="nofollow"
@@ -1033,7 +1033,7 @@
 									<div class="product__addCart">
 										<!-- Добавление в корзину -->
 										{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_new_goods.MAX_REST_VALUE=0 %}
-										<a class="add-notify button-tertiary"
+										<a class="add-notify button-empty"
 											title="Уведомить"
 											data-tooltip="Уведомить"
 											rel="nofollow"
@@ -1304,7 +1304,7 @@
 									<div class="product__addCart">
 										<!-- Добавление в корзину -->
 										{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_goods.MAX_REST_VALUE=0 %}
-										<a class="add-notify button-tertiary"
+										<a class="add-notify button-empty"
 											title="Уведомить"
 											data-tooltip="Уведомить"
 											rel="nofollow"
@@ -2134,7 +2134,7 @@
 										<div class="product__addCart">
 											<!-- Добавление в корзину -->
 											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}
-											<a class="add-notify button-tertiary"
+											<a class="add-notify button-empty"
 												title="Уведомить"
 												data-tooltip="Уведомить"
 												rel="nofollow"

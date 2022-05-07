@@ -220,7 +220,7 @@
 							<span>Купить сейчас</span>
 						</button>
 						<!-- Уведомить -->
-						<a class="add-notify button-tertiary productView__margin" data-fancybox data-src="#fancybox__notify" href="javascript:;">
+						<a class="add-notify button-empty productView__margin" data-fancybox data-src="#fancybox__notify" href="javascript:;">
 							<i class="icon-notification"></i>
 							<span>Уведомить</span>
 						</a>
@@ -820,7 +820,7 @@
 						<div class="product__addCart">
 							<!-- Добавление в корзину -->
 							{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && related_goods.MAX_REST_VALUE=0 %}
-							<a class="add-notify button-tertiary"
+							<a class="add-notify button-empty"
 								title="Уведомить"
 								data-tooltip="Уведомить"
 								rel="nofollow"
@@ -1089,7 +1089,7 @@
 						<div class="product__addCart">
 							<!-- Добавление в корзину -->
 							{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && related_views_goods.MAX_REST_VALUE=0 %}
-							<a class="add-notify button-tertiary"
+							<a class="add-notify button-empty"
 								title="Уведомить"
 								data-tooltip="Уведомить"
 								rel="nofollow"
