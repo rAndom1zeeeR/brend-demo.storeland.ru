@@ -2522,7 +2522,7 @@ function coupons() {
 
 
 ///////////////////////////////////////
-// Функция показать все на главной
+// Функции на главной Слайдер, Показать все
 ///////////////////////////////////////
 // Функция показать все для "Товары на главной"
 function pdtSales(){
@@ -2756,6 +2756,40 @@ function viewed() {
 			btnText.text('Скрыть')
 			parents.addClass('active').find('.product__item').addClass('show')
 		}
+	});
+}
+
+// Слайдер для главной страницы
+function slideShow() {
+	// Слайдер на главной
+	var owlS = $('#slideshow .owl-carousel');
+	owlS.owlCarousel({
+		items: 1,
+		loop: true,
+		rewind: true,
+		lazyLoad: true,
+		nav: false,
+		navText: [ , ],
+		navContainer: '',
+		dots: true,
+		dotsContainer: '',
+		dotsData: false,
+		dotsSpeed: 400,
+		dotsEach: true,
+		smartSpeed: 500,
+		URLhashListener: true,
+		autoplay: false,
+    autoplayTimeout: '3000',
+		autoplayHoverPause: true,
+		autoHeight: false,
+		autoHeightClass: 'owl-height',
+		responsiveClass: true,
+		responsiveRefreshRate: 100,
+		mouseDrag: true,
+		touchDrag: true,
+		pullDrag: true,
+		animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
 	});
 }
 

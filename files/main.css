@@ -103,7 +103,7 @@ input[type="file"] {margin-top: 0.25rem;height: auto;line-height: 1;border: 0;pa
 /**************************************/
 /*** Кнопки ***/
 /**************************************/
-button, [class*="button-"], .paymentFormSubmitLink, .paymentFormTbodySubmitButton {color: white;background-color: #262626;padding: 0 2rem;line-height: 2.25rem;border: 2px solid #262626;border-radius:0;text-align: center;font-size: .875rem;font-weight: 400;font-family: 'Roboto', sans-serif;cursor: pointer;display: inline-block;position: relative;transition: all 0.3s ease;}
+button, [class*="button-"], .paymentFormSubmitLink, .paymentFormTbodySubmitButton {color: white;background-color: #262626;padding: 0 2rem;line-height: 2.25rem;border: 2px solid #262626;border-radius:0;text-align: center;font-size: .875rem;font-weight: 500;font-family: 'Roboto', sans-serif;cursor: pointer;display: inline-block;position: relative;transition: all 0.3s ease;}
 button:hover, [class*="button-"]:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover, button.active, [class*="button-"].active {color: white;background-color: #26A297;border-color: #26A297;}
 /*** Кнопка. Основная ***/
 .button-primary {background-color: #262626;border-color: #262626;}
@@ -125,7 +125,7 @@ button:hover, [class*="button-"]:hover, .paymentFormSubmitLink:hover, .paymentFo
 .button-rotate:hover i, .button-rotate.active i {transform: rotate(90deg);}
 .button-rotate.active:hover i {transform: rotate(0deg);}
 /*** Кнопка. Ссылка. Без стилей фона ***/
-.button-link {color: #737373;background-color: transparent;padding: 0;border: 0;line-height: 1.5rem;}
+.button-link {color: #737373;background-color: transparent;padding: 0;border: 0;line-height: 1.5rem;font-weight: 400;}
 .button-link:hover, .button-link.active {color: #262626;background-color: transparent;}
 /*** Кнопки. Добавить в Избранное, Сравнение, Корзину, Модификации ***/
 [class^="add-"] i {font-size: 1.25rem;margin-right: .5rem;vertical-align: middle;}
@@ -236,8 +236,8 @@ h6 {font-size: 0.875rem;}
 /*** Навигация точками ***/
 .owl-dots {text-align: center;}
 .owl-dots.disabled {display: none;}
-.owl-dots .owl-dot {background-color: #C4C4C4;border-radius: 100%;width: .5rem;height: .5rem;margin: .25rem;padding: 0;display: inline-block;vertical-align: middle;position: relative;}
-.owl-dots .owl-dot.active, .owl-dots .owl-dot:hover {background-color: #9637C7;width: 1rem;height: 1rem;}
+.owl-dots .owl-dot {background-color: #C4C4C4;border-radius: 100%;border: 0;width: .5rem;height: .5rem;margin: .25rem;padding: 0;display: inline-block;vertical-align: middle;position: relative;}
+.owl-dots .owl-dot.active, .owl-dots .owl-dot:hover {background-color: #9637C7;width: .75rem;height: .75rem;}
 
 /*** Изображения в слайдере ***/
 .owl-carousel {overflow: hidden;}
@@ -414,14 +414,9 @@ h6 {font-size: 0.875rem;}
 /**************************************/
 /*** Блок Заголовков ***/
 /**************************************/
-.block__title {margin-bottom: 1.5rem;position: relative;text-align: center;}
-.block__title .title {line-height: 1.25;font-size: 1.5rem;font-weight: bold;text-transform: uppercase;}
+.block__title {margin-bottom: 1.5rem;position: relative;}
+.block__title .title {line-height: 1.5;font-size: 1.25rem;font-weight: 500;text-transform: uppercase;}
 .block__title .subtitle {font-size: 80%;}
-.block__nav .title {width: calc(100% - 5rem);margin: 0 auto;z-index: 2;}
-.block__nav .owl-nav {position: absolute;width: 100%;}
-@media all and (max-width: 479px) {
-	.block__title .title {font-size: 1.25rem;}
-}
 
 
 /**************************************/
@@ -1121,6 +1116,66 @@ footer .contacts__block-fancy {font-size: .75rem;font-weight: 300;padding: 0;}
 	.copyright {width: 100%;margin-top: 1rem;}
 	.payments {width: 100%;}
 }
+
+
+
+/**************************************/
+/*** Слайдшоу ***/
+/**************************************/
+#slideshow {margin: 2rem 0;}
+#slideshow.loading {height: 550px;}
+.slider__item {height: 220px;width: 100%;background-size: cover;background-position: center;background-repeat: no-repeat;}
+.slider__title {font-size: 1.25rem;font-weight: 500;}
+.slider__subtitle {margin-top: .5rem;color: #737373;font-weight: 500;}
+.slider__content {padding: 2rem;height: 100%;flex-direction: column;align-items: flex-start;justify-content: center;}
+.slider__buttons {margin-top: 1rem;}
+#slideshow .owl-dots {position: absolute;right: 1rem;bottom: 1rem;}
+
+
+/**************************************/
+/*** Промо ***/
+/**************************************/
+#promo {margin: 1.5rem 0;}
+.promo__item {width: 25%;padding: 0 1rem;}
+.promo__icon {font-size: 2rem;}
+.promo__content {line-height: 1.5;font-weight: 500;padding: 0 1rem;width: calc(100% - 2rem);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**************************************/

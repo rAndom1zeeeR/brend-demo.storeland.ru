@@ -147,7 +147,6 @@
 		<div id="menu">
 			<div class="container">
 				<div class="header__inner flex">
-
 					<!-- Поиск -->
 					<div class="header__search search" itemscope itemtype="https://schema.org/WebSite">
 						<link itemprop="url" href="{INDEX_PAGE_URL}" />							
@@ -412,6 +411,99 @@
 		</div>
 
 		{% IF index_page %}
+		
+		<!-- Слайдшоу -->
+		<div id="slideshow" class="loading">
+			<div class="container">
+				<div class="block__title">
+					<h2 class="title"><span>Выбор покупателей</span></h2>
+				</div>
+
+				<div class="slider owl-carousel">
+					<!-- Слайд 1 -->
+					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_1.jpg?design=THEMENAME">
+						<div class="slider__content flex">
+							<a class="slider__title" href="{CATALOG_URL}"><span>Лаки - бестселлеры</span></a>
+							<div class="slider__subtitle"><span>Успей купить со скидкой до 50%</span></div>
+							<div class="slider__buttons">
+								<a class="slider__button button-quaternary" href="{CATALOG_URL}" title="Смотреть каталог">
+									<span>Подробнее</span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Слайд 2 -->
+					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_2.jpg?design=THEMENAME">
+						<div class="slider__content flex">
+							<a class="slider__title" href="{CATALOG_URL}"><span>Маникюрные наборы</span></a>
+							<div class="slider__subtitle"><span>Новое поступление</span></div>
+							<div class="slider__buttons">
+								<a class="slider__button button-quaternary" href="{CATALOG_URL}" title="Смотреть каталог">
+									<span>Подробнее</span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Слайд 3 -->
+					<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_3.jpg?design=THEMENAME">
+						<div class="slider__content flex">
+							<a class="slider__title" href="{CATALOG_URL}"><span>Лечебные лаки</span></a>
+							<div class="slider__subtitle"><span>Фирмы Leka со скидкой до 70%</span></div>
+							<div class="slider__buttons">
+								<a class="slider__button button-quaternary" href="{CATALOG_URL}" title="Смотреть каталог">
+									<span>Подробнее</span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Промо -->
+		<div id="promo">
+			<div class="container">
+				<div class="row">
+					<div class="promo__inner flex">
+						<!-- Промо 1 -->
+						<div class="promo__item flex">
+							<div class="promo__icon">
+								<i class="icon-consultation"></i>
+							</div>
+							<div class="promo__content">Бесплатная консультация</div>
+						</div>
+						<!-- Промо 2 -->
+						<div class="promo__item flex">
+							<div class="promo__icon">
+								<i class="icon-delivery"></i>
+							</div>
+							<div class="promo__content">Бесплатная доставка по всей России</div>
+						</div>
+						<!-- Промо 3 -->
+						<div class="promo__item flex">
+							<div class="promo__icon">
+								<i class="icon-sertification"></i>
+							</div>
+							<div class="promo__content">Сертификаты качества на все товары</div>
+						</div>
+						<!-- Промо 4 -->
+						<div class="promo__item flex">
+							<div class="promo__icon">
+								<i class="icon-bonus"></i>
+							</div>
+							<div class="promo__content">Бонусы и подарки при любом заказе</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<!-- Хиты продаж -->
 		{% IFNOT index_page_favorites_goods_empty %}
 		<section id="pdt__best" class="pdt__visible loading">
@@ -2858,6 +2950,7 @@
 			pdtBest();
 			pdtSales();
 			pdtNews();
+			slideShow();
 		});
 	</script>
 	{% ENDIF %}
