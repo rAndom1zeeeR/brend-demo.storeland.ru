@@ -31,11 +31,12 @@
 
 <!-- Блок для обновления данных корзины. Не виден пользователю -->
 <div style="display:none;" id="newCartWord">товар{CART_COUNT_TOTAL | gen_word_end("","а","ов")}</div>
-<div style="display:none;" id="newCartSum">{CART_SUM_NOW | money_format}</div>
+<div style="display:none;" id="newCartSumNow">{CART_SUM_NOW}</div>
+<div style="display:none;" id="newCartSumOld">{CART_SUM_OLD}</div>
 <div style="display:none;" id="newCartCount">{CART_COUNT_TOTAL}</div>
 <div style="display:none;" id="newCartData">
 	<div class="addto__title">
-		<span class="cart__label">В Корзине</span>
+		<span class="addto__label">В Корзине</span>
 		<span class="count-cart" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
 		<span class="cart__word">товар{CART_COUNT_TOTAL | gen_word_end("","а","ов")}</span>
 	</div>
@@ -72,15 +73,19 @@
 		</div>
 		{% ENDFOR %}
 	</div>
-	<div class="addto__total {CURRENCY_CHAR_CODE}">
-		<span class="addto__label">Итого:</span>
-		<span class="price__now cartSumNow">{CART_SUM_NOW | money_format}</span>
+	<div class="addto__total {CURRENCY_CHAR_CODE} flex justify-between">
+		<div class="addto__total-item">
+			<span class="addto__total-label">Итого:</span>
+			<span class="price__now cartSumNow" data-price="{CART_SUM_NOW}">{CART_SUM_NOW | money_format}</span>
+		</div>
+		<div class="addto__total-item">
+			<span class="addto__total-label">Скидка:</span>
+			<span class="price__now cartSumOld" data-price="{CART_SUM_OLD}">{CART_SUM_OLD | money_format}</span>
+		</div>
 	</div>
 	<div class="addto__empty">В корзине пока ничего нет</div>
 	<div class="addto__buttons flex justify-between">
-		<a class="button-secondary" href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" title="Очистить корзину">
-			<span>Очистить</span>
-		</a>
+		<a class="button-link" href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" title="Очистить корзину"><span>Очистить все</span></a>
 		<a class="button-primary" href="{CART_URL}" title="Перейти в Корзину"><span>В Корзину</span></a>
 	</div>
 </div>
@@ -88,8 +93,10 @@
 <!-- Обновление данных корзины -->
 <script>
 $('.cart__word').html($('#newCartWord').html());
-$('.cartSumNow').html($('#newCartSum').html());
-$('.count-cart').html($('#newCartCount').html());
-$('.count-cart').attr('data-count', $('#newCartCount').html());
+$('.cartSumNow').attr('data-price', $('#newCartSumNow').html()).find('.num').html(addSpaces($('#newCartSumNow').html()));
+$('.cartSumOld').attr('data-price', $('#newCartSumOld').html()).find('.num').html(addSpaces($('#newCartSumOld').html()));
+$('.count-cart').attr('data-count', $('#newCartCount').html()).html($('#newCartCount').html());
 $('.addto__cart').html($('#newCartData').html());
+// Обновление скидки
+cartSaleSum();
 </script>
