@@ -2525,8 +2525,8 @@ function coupons() {
 // Функции на главной Слайдер, Показать все
 ///////////////////////////////////////
 // Функция показать все для "Товары на главной"
-function pdtSales(){
-	var id = '#pdt__sales';
+function pdtSale(){
+	var id = '#pdt__sale';
 	var item = $(id).find('.product__item');
 	var visible = $(id).find('.product__item:visible').length;
 
@@ -2601,7 +2601,7 @@ function pdtNew(){
 	var buttons = id.find('.owl-nav');
 	var dots = id.find('.owl-dots');
 	carousel.owlCarousel({
-		items: 4,
+		items: 5,
 		margin: 32,
 		loop: false,
 		rewind: true,
@@ -2628,14 +2628,14 @@ function pdtNew(){
 			640:{items:2},
 			768:{items:3},
 			1024:{items:4},
-			1200:{items:4}
+			1200:{items:5}
 		}
 	});
 }
 
 // Функция слайдера для "Новинки" на главной странице
-function pdtSale(){
-	var id = $('#pdt__sale');
+function pdtSales(){
+	var id = $('#pdt__sales');
 	var carousel = id.find('.owl-carousel');
 	var buttons = id.find('.owl-nav');
 	var dots = id.find('.owl-dots');
@@ -2680,7 +2680,7 @@ function pdtNews() {
 	var dots = id.find('.owl-dots');
 	// Функция слайдера для Новостей
 	carousel.owlCarousel({
-		items: 4,
+		items: 3,
 		margin: 32,
 		loop: false,
 		rewind: true,
@@ -2705,9 +2705,9 @@ function pdtNews() {
 			320:{items:1, autoHeight: true},
 			480:{items:2},
 			640:{items:2},
-			768:{items:3},
-			1024:{items:4},
-			1200:{items:4}
+			768:{items:2},
+			1024:{items:3},
+			1200:{items:3}
 		}
 	});
 
