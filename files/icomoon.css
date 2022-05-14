@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?ukzspf');
-  src:  url('fonts/icomoon.eot?ukzspf#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?ukzspf') format('truetype'),
-    url('fonts/icomoon.woff?ukzspf') format('woff'),
-    url('fonts/icomoon.svg?ukzspf#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?hx3wrp');
+  src:  url('fonts/icomoon.eot?hx3wrp#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?hx3wrp') format('truetype'),
+    url('fonts/icomoon.woff?hx3wrp') format('woff'),
+    url('fonts/icomoon.svg?hx3wrp#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,66 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-iokassa:before {
+  content: "\e92b";
+}
+.icon-iomoney:before {
+  content: "\e92c";
+}
+.icon-mastercard:before {
+  content: "\e92d";
+}
+.icon-mir:before {
+  content: "\e92e";
+}
+.icon-qiwi:before {
+  content: "\e92f";
+}
+.icon-sber:before {
+  content: "\e930";
+}
+.icon-visa:before {
+  content: "\e931";
+}
+.icon-walletone:before {
+  content: "\e932";
+}
+.icon-webmoney:before {
+  content: "\e933";
+}
+.icon-facebook:before {
+  content: "\e934";
+}
+.icon-instagram:before {
+  content: "\e935";
+}
+.icon-odnoklassniki:before {
+  content: "\e936";
+}
+.icon-skype:before {
+  content: "\e937";
+}
+.icon-telegram:before {
+  content: "\e938";
+}
+.icon-tiktok:before {
+  content: "\e939";
+}
+.icon-twitter:before {
+  content: "\e93a";
+}
+.icon-viber:before {
+  content: "\e93b";
+}
+.icon-vk:before {
+  content: "\e93c";
+}
+.icon-whatsapp:before {
+  content: "\e93d";
+}
+.icon-youtube:before {
+  content: "\e93e";
+}
 .icon-sertification:before {
   content: "\e90f";
 }

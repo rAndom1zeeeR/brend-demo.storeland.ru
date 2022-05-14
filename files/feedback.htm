@@ -46,11 +46,11 @@
 		<!-- Контакты -->
 	  <div class="client__block contacts" itemscope itemtype="https://schema.org/Organization">
 			<h3 class="client__title">Контакты</h3>
-			<div class="contacts__block contacts__block-phone">
+			<div class="contacts__block contacts__block-phones">
 				<!-- Телефон 1 -->
 				{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
 				<div class="contacts__label">Телефоны</div>
-				<div class="contacts__block flex">
+				<div class="contacts__block contacts__block-phone flex">
 					<div class="contacts__icon"><i class="icon-phone"></i></div>
 					<div class="contacts__content">
 						<a class="contacts__link phone"
@@ -63,7 +63,7 @@
 				{% ENDIF SETTINGS_STORE_PHONE_NUMBER1 %}
 				<!-- Телефон 2 -->
 				{% IF SETTINGS_STORE_PHONE_NUMBER2 %}
-				<div class="contacts__block flex">
+				<div class="contacts__block contacts__block-phone flex">
 					<div class="contacts__icon"><i class="icon-phone"></i></div>
 					<div class="contacts__content">
 						<a class="contacts__link phone"
@@ -76,7 +76,7 @@
 				{% ENDIF SETTINGS_STORE_PHONE_NUMBER2 %}
 				<!-- Телефон 3 -->
 				{% IF SETTINGS_STORE_PHONE_NUMBER3 %}
-				<div class="contacts__block flex">
+				<div class="contacts__block contacts__block-phone flex">
 					<div class="contacts__icon"><i class="icon-phone"></i></div>
 					<div class="contacts__content">
 						<a class="contacts__link phone"
@@ -91,7 +91,7 @@
 
 			<!-- Почта -->
 			{% IF SETTINGS_STORE_EMAIL_MAIN %}
-			<div class="contacts__block email flex">
+			<div class="contacts__block contacts__block-email flex">
 				<div class="contacts__label">Электронная почта</div>
 				<div class="contacts__icon"><i class="icon-mail"></i></div>
 				<div class="contacts__content">
@@ -104,7 +104,7 @@
 
 			<!-- Адрес -->
 			{% IF SETTINGS_STORE_REGION %}
-			<div class="contacts__block region flex" target="_blank" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+			<div class="contacts__block contacts__block-region flex" target="_blank" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
 				<div class="contacts__label">Адрес магазина</div>
 				<div class="contacts__icon"><i class="icon-location"></i></div>
 				<div class="contacts__content">
@@ -117,7 +117,7 @@
 
 			<!-- Время работы -->
 			{% IF SETTINGS_STORE_WORK_TIME %}
-			<div class="contacts__block worktime flex">
+			<div class="contacts__block contacts__block-worktime flex">
 				<div class="contacts__label">График работы</div>
 				<div class="contacts__icon"><i class="icon-schedule"></i></div>
 				<div class="contacts__content">

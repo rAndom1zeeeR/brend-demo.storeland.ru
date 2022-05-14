@@ -2607,7 +2607,7 @@ function pdtNew(){
 		rewind: true,
 		lazyLoad: true,
 		nav: true,
-		navContainer: buttons,
+		navContainer: '',
 		navText: [ , ],
 		dots: false,
 		dotsContainer: dots,
@@ -2646,7 +2646,7 @@ function pdtSales(){
 		rewind: true,
 		lazyLoad: true,
 		nav: true,
-		navContainer: buttons,
+		navContainer: '',
 		navText: [ , ],
 		dots: false,
 		dotsContainer: dots,
@@ -2973,16 +2973,16 @@ function openMenu() {
   $('[data-open]').on('click', function(event){
     event.preventDefault();
     var value = $(this).data('open');
-		$('[data-open]').removeClass('opened active')
-		$('[data-content]').removeClass('opened')
-    if ($('[data-content="'+ value +'"]').hasClass('opened')){
-      $(this).removeClass('opened active').parent().removeClass('opened');
-      $('#overlay').removeClass('opened');
-      $('[data-content="'+ value +'"]').removeClass('opened').slideUp('slow');
+		$('[data-open]').removeClass('active')
+		$('[data-content]').removeClass('active')
+    if ($('[data-content="'+ value +'"]').hasClass('active')){
+      $(this).removeClass('active').parent();
+      $('#overlay').removeClass('active');
+      $('[data-content="'+ value +'"]').removeClass('active').slideUp('slow');
     }else{
-      $(this).addClass('opened active').parent().addClass('opened');
-      $('#overlay').addClass('opened');
-      $('[data-content="'+ value +'"]').addClass('opened').slideDown('slow');
+      $(this).addClass('active').parent();
+      $('#overlay').addClass('active');
+      $('[data-content="'+ value +'"]').addClass('active').slideDown('slow');
     }
   });
 }
@@ -3127,21 +3127,21 @@ function ajaxForms(id,flag,successMessage,errorMessage){
   });
 }
 
-// "Обратный звонок".
-ajaxForms('#callback','callbackFlag','Спасибо за обращение! Мы перезвоним вам в ближайшее время','Вы уже отправляли запрос. Пожалуйста ожидайте звонка.')
 // "Обратный звонок" в модальном окне.
-// ajaxForms('#fancybox__callback','fancyCallbackFlag','Запрос обратного звонка успешно отправлен администрации магазина','Вы уже отправляли запрос. Пожалуйста ожидайте звонка.')
+ajaxForms('#fancybox__callback','fancyCallbackFlag','Запрос обратного звонка успешно отправлен администрации магазина','Вы уже отправляли запрос. Пожалуйста ожидайте звонка.')
 // "Обратная связь" в модальном окне.
 ajaxForms('#fancybox__feedback','fancyFeedbackFlag','Запрос обратной связи успешно отправлен администрации магазина','Вы уже отправляли запрос. Пожалуйста ожидайте.')
-// "Обратная связь".
-ajaxForms('.form__feedback','feedbackFlag','Спасибо за обращение! Мы свяжемся с вами в ближайшее время','Вы уже отправляли запрос. Пожалуйста ожидайте.')
-// "Подписаться".
-//ajaxForms('#subscribe','subscribeFlag','Спасибо за обращение! Вы подписались на наши уведомления','Вы уже отправляли запрос. Пожалуйста ожидайте.')
 // "Уведомить" в модальном окне.
 ajaxForms('#fancybox__notify','notifyFlag','Вы будете уведомлены о поступлении товара','Вы уже отправляли запрос. Пожалуйста ожидайте.')
 // "Обратный звонок".
 ajaxForms('.page-сallback','pageCallbackFlag','Спасибо за обращение! Мы перезвоним вам в ближайшее время','Вы уже отправляли запрос. Пожалуйста ожидайте звонка.')
+// "Обратная связь".
+//ajaxForms('.form__feedback','feedbackFlag','Спасибо за обращение! Мы свяжемся с вами в ближайшее время','Вы уже отправляли запрос. Пожалуйста ожидайте.')
+// "Подписаться".
+ajaxForms('.subscribe','subscribeFlag','Спасибо за обращение! Вы подписались на наши уведомления','Вы уже отправляли запрос. Пожалуйста ожидайте.')
 // "Обратный звонок".
+//ajaxForms('#callback','callbackFlag','Спасибо за обращение! Мы перезвоним вам в ближайшее время','Вы уже отправляли запрос. Пожалуйста ожидайте звонка.')
+// "Обратный связь".
 ajaxForms('#feedback','fancyFeedbackFlag','Запрос обратной связи успешно отправлен администрации магазина','Вы уже отправляли запрос. Пожалуйста ожидайте.')
 
 
@@ -3158,6 +3158,7 @@ $(document).ready(function(){
 	viewed();
 	cartSaleSum();
   mainnav('header .mainnav', '1', 991);
+  mainnav('footer .mainnav', '2', 991);
 	priceDiff('.product__item', 'percent');
 
 	// Удаление классов загрузки для элементов страницы
