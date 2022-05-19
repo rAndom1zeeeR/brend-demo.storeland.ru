@@ -399,15 +399,15 @@ function goodsModRest() {
 	$('.goodsModRestValue').each(function(){
 		var value = $(this).data('value');
 		if (value > 0 && value < 11) {
-			$(this).text('В наличии мало');
+			$(this).text('Мало');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('few');
 		}else if (value > 10) {
-			$(this).text('В наличии много');
+			$(this).text('Много');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('alot');
 		}else if (value == 0) {
-			$(this).text('нет в наличии');
+			$(this).text('Отсутствует');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('zero');
 		}
@@ -2970,10 +2970,10 @@ function openMenu() {
   });
 
 	// Открытие элементов
-  $('[data-open]').on('click', function(event){
+  $('[data-active]').on('click', function(event){
     event.preventDefault();
-    var value = $(this).data('open');
-		$('[data-open]').removeClass('active')
+    var value = $(this).data('active');
+		$('[data-active]').removeClass('active')
 		$('[data-content]').removeClass('active')
     if ($('[data-content="'+ value +'"]').hasClass('active')){
       $(this).removeClass('active').parent();
@@ -2983,6 +2983,23 @@ function openMenu() {
       $(this).addClass('active').parent();
       $('#overlay').addClass('active');
       $('[data-content="'+ value +'"]').addClass('active').slideDown('slow');
+    }
+  });
+
+	// Открытие элементов
+  $('[data-open]').on('click', function(event){
+    event.preventDefault();
+    var value = $(this).data('open');
+		$('[data-open]').removeClass('opened')
+		$('[data-content]').removeClass('opened')
+    if ($('[data-content="'+ value +'"]').hasClass('opened')){
+      $(this).removeClass('opened').parent();
+      $('#overlay').removeClass('opened');
+      $('[data-content="'+ value +'"]').removeClass('opened').slideUp('slow');
+    }else{
+      $(this).addClass('opened').parent();
+      $('#overlay').addClass('opened');
+      $('[data-content="'+ value +'"]').addClass('opened').slideDown('slow');
     }
   });
 }
@@ -3218,3 +3235,42 @@ $(window).resize(function(){
   }
   mainnav('header .mainnav', '1', 991);
 });
+
+// Функция слайдера брендов
+function pdtBrands(){
+	var id = $('.brands');
+	var carousel = id.find('.owl-carousel');
+	var buttons = id.find('.owl-nav');
+	var dots = id.find('.owl-dots');
+	carousel.owlCarousel({
+		items: 2,
+		margin: 32,
+		loop: false,
+		rewind: true,
+		lazyLoad: true,
+		nav: false,
+		navContainer: '',
+		navText: [ , ],
+		dots: false,
+		dotsContainer: dots,
+		autoHeight: false,
+		autoHeightClass: 'owl-height',
+		autoplay: true,
+		autoplayHoverPause: true,
+		smartSpeed: 500,
+		mouseDrag: true,
+		touchDrag: true,
+		pullDrag: true,
+		responsiveClass: true,
+		responsiveRefreshRate: 100,
+		responsive: {
+			0:{items:1, autoHeight: true},
+			320:{items:1, autoHeight: true},
+			480:{items:2},
+			640:{items:2},
+			768:{items:2},
+			1024:{items:2},
+			1200:{items:2}
+		}
+	});
+}
