@@ -1163,13 +1163,13 @@ function pageGoods() {
 		var buttons = id.find('.owl-nav');
 		var dots = id.find('.owl-dots');
 		carousel.owlCarousel({
-			items: 4,
+			items: 5,
 			margin: 32,
 			loop: false,
 			rewind: true,
 			lazyLoad: true,
 			nav: true,
-			navContainer: buttons,
+			navContainer: '',
 			navText: [ , ],
 			dots: false,
 			dotsContainer: dots,
@@ -1187,10 +1187,10 @@ function pageGoods() {
 				0:{items:1, autoHeight: true},
 				320:{items:1, autoHeight: true},
 				480:{items:2},
-				640:{items:3},
+				640:{items:2},
 				768:{items:3},
 				1024:{items:4},
-				1200:{items:4}
+				1200:{items:5}
 			}
 		});
 	}
@@ -1203,13 +1203,13 @@ function pageGoods() {
 		var buttons = id.find('.owl-nav');
 		var dots = id.find('.owl-dots');
 		carousel.owlCarousel({
-			items: 4,
+			items: 5,
 			margin: 32,
 			loop: false,
 			rewind: true,
 			lazyLoad: true,
 			nav: true,
-			navContainer: buttons,
+			navContainer: '',
 			navText: [ , ],
 			dots: false,
 			dotsContainer: dots,
@@ -1227,10 +1227,10 @@ function pageGoods() {
 				0:{items:1, autoHeight: true},
 				320:{items:1, autoHeight: true},
 				480:{items:2},
-				640:{items:3},
+				640:{items:2},
 				768:{items:3},
 				1024:{items:4},
-				1200:{items:4}
+				1200:{items:5}
 			}
 		});
 	}
@@ -2727,34 +2727,38 @@ function pdtNews() {
 // Функция слайдер для "Вы смотрели"
 function viewed() {
 	var id = $('#pdt__viewed');
-	var item = $(id).find('.product__item');
-	var visible = $(id).find('.product__item:visible').length;
-
-	// Создаем кнопку
-	var content = '<div class="products__buttons"><a class="button-rotate button-link" href="javascript:;" title="Показать все"><i class="icon-reload"></i><span>Показать все</span></a></div>'
-	$(id).find('.products__grid').parent().append(content);
-
-	// Кнопка показать все
-	var button = $(id).find('.products__buttons a');
-	
-	// Скрываем кнопку показать все если мало товаров
-	item.length > visible ? button.parent().show() : button.parent().hide()
-
-	// Функция открытия скрытых товаров
-	button.on('click', function (event){
-		event.preventDefault();
-		var t = $(this);
-		var parents = t.parents().find(id);
-		var btnText = t.find('span');
-		if(t.hasClass('active')){
-			t.removeClass('active')
-			btnText.text('Показать все')
-			parents.removeClass('active').find('.product__item').removeClass('show')
-			$('html, body').animate({scrollTop : parents.offset().top}, 600);
-		}else{
-			t.addClass('active')
-			btnText.text('Скрыть')
-			parents.addClass('active').find('.product__item').addClass('show')
+	var carousel = id.find('.owl-carousel');
+	var buttons = id.find('.owl-nav');
+	var dots = id.find('.owl-dots');
+	carousel.owlCarousel({
+		items: 5,
+		margin: 32,
+		loop: false,
+		rewind: true,
+		lazyLoad: true,
+		nav: true,
+		navContainer: '',
+		navText: [ , ],
+		dots: false,
+		dotsContainer: dots,
+		autoHeight: false,
+		autoHeightClass: 'owl-height',
+		autoplay: false,
+		autoplayHoverPause: true,
+		smartSpeed: 500,
+		mouseDrag: true,
+		touchDrag: true,
+		pullDrag: true,
+		responsiveClass: true,
+		responsiveRefreshRate: 100,
+		responsive: {
+			0:{items:1, autoHeight: true},
+			320:{items:1, autoHeight: true},
+			480:{items:2},
+			640:{items:2},
+			768:{items:3},
+			1024:{items:4},
+			1200:{items:5}
 		}
 	});
 }

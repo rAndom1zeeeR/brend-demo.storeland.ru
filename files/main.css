@@ -134,8 +134,8 @@ button:hover, [class*="button-"]:hover, .paymentFormSubmitLink:hover, .paymentFo
 /*** Кнопка. Маленькая ***/
 .button-small {line-height: 2rem;padding: 0 1rem;}
 /*** Кнопка. Анимация поворота ***/
-.button-rotate i {font-size: 1.125rem;vertical-align: middle;transition: all 0.3s ease;display: inline-block;}
-.button-rotate span {margin-left: .5rem;vertical-align: middle;transition: all 0.3s ease;}
+.button-rotate i {font-size: 1.125rem;vertical-align: text-bottom;transition: all 0.3s ease;display: inline-block;}
+.button-rotate span {margin-left: .5rem;transition: all 0.3s ease;}
 .button-rotate:hover i, .button-rotate.active i {transform: rotate(90deg);}
 .button-rotate.active:hover i {transform: rotate(0deg);}
 /*** Кнопка. Ссылка. Без стилей фона ***/
@@ -791,14 +791,14 @@ h6 {font-size: 0.875rem;}
 }
 
 /* Товар. Табы */
-.productView__tabs {margin-top: 2rem;}
+.productView__tabs {margin-top: 3rem;}
 [data-tab-content] {display: none;}
 [data-tab-content].active {display: block;}
-.tabs__nav {font-size: 1.25rem;margin: 0 2rem 1rem 0;}
+.tabs__content {margin-top: 1rem;}
 
 /* Товар. Характеристики */
-.features__item {width: 100%;margin-bottom: 1rem;}
-.features__name {margin-right: .5rem;}
+.features__item {width: 100%;margin-bottom: 1rem;font-size: 1rem;}
+.features__name {margin-right: .5rem;color: var(--color-gray);}
 
 /* Товар. Доставка */
 .delivery__item {margin-bottom: 2rem;}
@@ -816,6 +816,7 @@ h6 {font-size: 0.875rem;}
 .opinion__content {width: 50%;padding-right: 1rem;}
 .opinion__addForm {width: 50%;padding-left: 1rem;position: sticky;position: -webkit-sticky;top: 0;}
 .opinion__addForm.opinion__empty {padding: 0;}
+.opinion__addForm .subtitle {color: var(--color-gray);font-size: .875rem;}
 .opinion__block {margin-bottom: 1rem;}
 .opinion__block:last-child {margin-bottom: 0;}
 .opinion__block label {margin-bottom: .5rem;display: block;}
@@ -835,22 +836,27 @@ h6 {font-size: 0.875rem;}
 }
 
 /* Товар. Навигация Отзывов */
-.opinion__nav {margin-bottom: 1rem;}
+.opinion__nav {margin-bottom: 1rem;display: none;}
 .opinion__nav a {font-size: 1.125rem;margin: 0 1rem .5rem 0;}
 .opinion__nav a.active {color: var(--color-primary);}
 
 /* Товар. Отзыв */
+.productView__opinion-ratings {margin-bottom: 1.5rem;}
+.productView__opinion-ratings-label {margin-left: .5rem;color: var(--color-secondary);font-size: 1.125rem;font-weight: 500;}
+.productView__opinion-ratings .ratings:before {font-size: 1.25rem;}
+.productView__opinion-ratings .ratings .rating:before {font-size: 1.25rem;color: var(--color-secondary);}
 .opinion__item {margin-bottom: 2rem;}
 .opinion__item:nth-child(n+4) {display: none;}
 .opinion__item.show {display: block;}
 .opinion__item.hide {display: none;}
 .opinion__text label {margin-bottom: .5rem;display: block;}
-.opinion__date {margin: 0 1rem 1rem 0;}
-.opinion__name {margin: 0 1rem 1rem 0;}
+.opinion__date {margin: 0 1rem 1rem 0;color: var(--color-gray);}
+.opinion__name {margin: 0 1rem 1rem 0;color: var(--color-gray);}
 .opinion__ratings {margin: 0 1rem 1rem 0;}
-.opinion__answer {margin: 1rem 0;padding: 1rem;border: 1px solid var(--color-gray);}
-.opinion__answer label {margin-bottom: 1rem;display: block;}
+.opinion__answer {margin: 1rem 0;}
+.opinion__answer label {margin-bottom: 1rem;display: block;color: var(--color-primary);}
 .opinion__delete {margin-top: -.5rem;}
+
 
 /**************************************/
 /*** След. Пред. товар в категории ***/
@@ -1109,7 +1115,8 @@ header .contacts__block-phone .contacts__link {font-size: 1.25rem;font-weight: 5
 /*** Новости ***/
 /**************************************/
 #news .tabs__navs {white-space: nowrap;flex-wrap: nowrap;overflow-x: auto;}
-#news .tabs__nav {margin: 0 1rem 1rem 0;line-height: 1.5;font-size: 1.25rem;font-weight: 500;text-transform: uppercase;}
+.tabs__nav {margin: 0 2rem 1rem 0;line-height: 1.5;font-size: 1.25rem;font-weight: 500;text-transform: uppercase;}
+.tabs__nav:last-child {margin-right: 0;}
 #news .owl-prev, #news .owl-next {position: absolute;top: 50%;}
 #news .news__date {margin-top: 0;}
 #news .news__image {height: 358px;overflow: hidden;}

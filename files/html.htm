@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Content-Language" content="ru" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta name="format-detection" content="telephone=no" />
 	<link rel="icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=THEMENAME" type="image/x-icon" />
 	<link rel="shortcut icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=THEMENAME" type="image/x-icon" />
@@ -1448,7 +1448,7 @@
 		<!-- Товары на главной -->
 		{% IFNOT index_page_goods_empty %}
     <section id="pdt__sale" class="pdt__visible loading">
-			<div class="container">
+			<div class="container products__container">
 				<div class="block__title block__nav flex">
 					<a class="title" href="{CATALOG_INDEX_PAGE_URL}" title="Перейти в Товары на главной"><span>Товары на главной</span></a>
 					<div class="owl-nav"></div>
@@ -1908,40 +1908,6 @@
 			</div>
 		</section>
 
-		<!-- Обратная связь -->
-		<section id="feedback">
-			<div class="container">
-				<div class="feedback__inner flex-stretch">
-					<div class="feedback__banner lozad" data-background-image="{ASSETS_IMAGES_PATH}banner_feedback.jpg?design=THEMENAME"></div>
-					<div class="feedback__content">
-						<div class="feedback__title">Нужна консультация?</div>
-						<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
-							<input type="hidden" name="hash" value="{HASH}" />
-							<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}" />
-							<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
-							{ANTISPAM_CODE}
-							<div class="form__fields">
-								<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
-							</div>
-							<div class="form__fields">
-								<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
-							</div>
-							<div class="form__fields">
-								<textarea class="textarea" rows="5" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" placeholder="Комментарий" >{FORM_CALLBACK_COMMENT}</textarea>
-							</div>
-							<div class="form__buttons">
-								<button class="button-secondary form__button" type="submit" title="Отправить"><span>Получить консультацию</span></button>
-								<div class="form__pp">
-									<span>Нажимая на кнопку &laquo;Получить консультацию&raquo;, Вы соглашаетесь с</span>
-									<span data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</span>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</section>
-
 		{% ELSE %}
 
 		
@@ -2395,18 +2361,16 @@
 			</div>
 		</section>
 
-		{% ENDIF index_page %}
-
 		<!-- Вы смотрели -->
 		{% IFNOT recently_viewed_goods_empty %}
-		<section style="display: none;" id="pdt__viewed" class="pdt__visible loading">
+		<section id="pdt__viewed" class="pdt__carousel loading">
 			<div class="container products__container">
 				<div class="block__title block__nav flex">
 					<div class="title"><span>Вы смотрели</span></div>
 					<div class="owl-nav"></div>
 				</div>
-				<div class="row">
-					<div class="products__grid flex-stretch">
+				<div class="">
+					<div class="products__grid flex-stretch owl-carousel">
 						{% FOR recently_viewed_goods %}
 						<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF recently_viewed_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{recently_viewed_goods.ID}" itemscope itemtype="https://schema.org/Product">
 							<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form">
@@ -2549,9 +2513,9 @@
 												<i class="icon-cart"></i>
 												<span class="inCart__added">
 													<span class="inCart__count">{recently_viewed_goods.NB_GOODS_IN_CART}</span>
-													{% FOR mods %}
-														{% IF recently_viewed_goods.mods.index > 1 %}{continue}{% ENDIF %}
-														<span class="inCart__measure">{recently_viewed_goods.mods.MEASURE_NAME}.</span>
+													{% FOR goods_mod_list %}
+														{% IF recently_viewed_goods.goods_mod_list.index > 1 %}{continue}{% ENDIF %}
+														<span class="inCart__measure">{recently_viewed_goods.goods_mod_list.MEASURE_NAME}.</span>
 													{% ENDFOR %}
 												</span>
 											</a>
@@ -2679,6 +2643,42 @@
 			</div>
 		</section>
 		{% ENDIF recently_viewed_goods_empty %}
+
+		{% ENDIF index_page %}
+
+		<!-- Обратная связь -->
+		<section id="feedback">
+			<div class="container">
+				<div class="feedback__inner flex-stretch">
+					<div class="feedback__banner lozad" data-background-image="{ASSETS_IMAGES_PATH}banner_feedback.jpg?design=THEMENAME"></div>
+					<div class="feedback__content">
+						<div class="feedback__title">Нужна консультация?</div>
+						<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
+							<input type="hidden" name="hash" value="{HASH}" />
+							<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}" />
+							<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+							{ANTISPAM_CODE}
+							<div class="form__fields">
+								<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
+							</div>
+							<div class="form__fields">
+								<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
+							</div>
+							<div class="form__fields">
+								<textarea class="textarea" rows="5" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" placeholder="Комментарий" >{FORM_CALLBACK_COMMENT}</textarea>
+							</div>
+							<div class="form__buttons">
+								<button class="button-secondary form__button" type="submit" title="Отправить"><span>Получить консультацию</span></button>
+								<div class="form__pp">
+									<span>Нажимая на кнопку &laquo;Получить консультацию&raquo;, Вы соглашаетесь с</span>
+									<span data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</span>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<!-- Подвал -->
 		<footer id="footer">
