@@ -903,15 +903,30 @@ h6 {font-size: 0.875rem;}
 /**************************************/
 /*** Список Акций ***/
 /**************************************/
-.promotion__percentage {text-align: center;font-size: 2rem;}
+.promotion__item {background-color: #F1F1F1;text-align: center;}
+.promotion__form {color: var(--color-red);}
+.promotion__form:hover {color: var(--color-primary);}
+.promotion__percentage {margin-top: 3rem;font-size: 3rem;font-weight: 500;}
 .promotion__margin {margin-bottom: 1rem;}
-.promotion__name {font-size: 1.125rem;}
-.promotion__desc {max-height: 3.75rem;line-height: 1.25rem;overflow: hidden;}
+.promotion__name {font-size: 1rem;color: var(--color-gray);}
+.promotion__desc {max-height: 3.75rem;line-height: 1.25rem;overflow: hidden;display: none;}
+.promotion__date {margin-top: 3rem;padding: .75rem;background-color: var(--color-red);color: var(--color-white);}
+.promotion__item:hover .promotion__date {background-color: var(--color-primary);}
+.promotion__date-expired {display: none;}
+.promotion__empty .promotion__date-expired {display: block;}
+.promotion__empty .promotion__date-time {display: none;}
+.promotion__empty .promotion__form {color: var(--color-gray);}
+.promotion__empty .promotion__percentage {color: var(--color-gray);}
+.promotion__empty .promotion__date {background-color: var(--color-gray);}
+.promotion__counter {display: none;}
+.promotion__counter div:after {content: ':';display: inline-block;font-size: 1rem;margin: 0 .5rem 0 .25rem;}
+.promotion__counter div:last-child::after {display: none;}
 /** Просмотр Акции **/
 .promotion__container {margin: 2rem 0;}
 .promotion__content strong {margin: 0 .25rem;}
 .promotion__text {margin-top: 1rem;}
-.promotion__date-expired {color: var(--color-gray);}
+.promotion__container .promotion__date {margin-top: 0;display: inline-block;}
+.promotion__container .promotion__date-expired {color: var(--color-gray);}
 
 
 /**************************************/

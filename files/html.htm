@@ -3157,6 +3157,15 @@
 	</script>
 	{% ENDIF %}
 
+	<!-- Страница: Акции -->
+	{% IF MOD_LNAME = discount %}
+	<script async type="text/javascript">
+		$(document).ready(function () {
+			counterDate();
+		});
+	</script>
+	{% ENDIF %}
+
 	{% IF MOD_LNAME = catalog %}
 	<script type="text/javascript">	
 	// Загрузка основных функций шаблона Товары
@@ -3220,13 +3229,11 @@
 	{% ENDIF %}
 
 	<!-- Слайдер. Карусель -->
-	{% IF index_page || MOD_LNAME = goods || MOD_LNAME = compare %}
 	<link rel="preload" type="text/css" href="{ASSETS_STYLES_PATH}owl.carousel.min.css?design=THEMENAME" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<noscript>
 		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}owl.carousel.min.css?design=THEMENAME">
 	</noscript>
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}owl-carousel.js?design=THEMENAME"></script>
-	{% ENDIF %}
 	
 	<!-- Модальные окна -->
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}jquery.fancybox.min.js?design=THEMENAME"></script>

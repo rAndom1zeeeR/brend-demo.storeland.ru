@@ -2797,6 +2797,44 @@ function slideShow() {
 	});
 }
 
+// Отсчет даты до окончания акции
+function counterDate() {
+	var id = $('.counter');
+	// Если не найдет счетчик прекращаем работу функции
+	if(!id.length){
+		return false;
+	}
+	// Перебираем каждый счетчик
+	id.each(function(){
+		var t = $(this);
+		// Устанавливаем дату обратного отсчета ММ-ДД-ГГ
+		var expired = t.attr('data-expired');
+		var countDownDate = new Date(expired).getTime();
+		// Обновление счетчика каждую секунду
+		var x = setInterval(function() {
+			var now = new Date().getTime();
+			var distance = countDownDate - now;
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			// Вывод
+			t.find('.days span').text(days);
+			t.find('.hours span').text(hours);
+			t.find('.minutes span').text(minutes);
+			t.find('.seconds span').text(seconds);
+			// Счетчик завершен
+			if (distance < 0) {
+				clearInterval(x);
+				t.hide();
+			}else{
+				t.css({'display':'flex'});
+				t.prev().hide();
+			}
+		}, 1000);
+	})
+}
+
 ///////////////////////////////////////
 /* Скрипты для Товары, Категории */
 ///////////////////////////////////////
