@@ -156,7 +156,9 @@
 									<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 									{% ENDIF %}
 								</div>
+								{% IF goods.OPINION_RATING_CNT_ALL > 0 %}
 								<div class="ratings__count">{goods.OPINION_RATING_CNT_ALL}</div>
+								{% ENDIF %}
 							</div>
 							{% ENDIF %}
 			
@@ -435,7 +437,9 @@
 										<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 										{% ENDIF %}
 									</div>
+									{% IF goods.OPINION_RATING_CNT_ALL > 0 %}
 									<div class="ratings__count">{goods.OPINION_RATING_CNT_ALL}</div>
+									{% ENDIF %}
 								</div>
 								{% ENDIF %}
 				

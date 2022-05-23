@@ -573,7 +573,9 @@
 												<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 												{% ENDIF %}
 											</div>
+											{% IF index_page_sale_goods.OPINION_RATING_CNT_ALL > 0 %}
 											<div class="ratings__count">{index_page_sale_goods.OPINION_RATING_CNT_ALL}</div>
+											{% ENDIF %}
 										</div>
 										{% ENDIF %}
 						
@@ -862,7 +864,9 @@
 												<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 												{% ENDIF %}
 											</div>
+											{% IF index_page_favorites_goods.OPINION_RATING_CNT_ALL > 0 %}
 											<div class="ratings__count">{index_page_favorites_goods.OPINION_RATING_CNT_ALL}</div>
+											{% ENDIF %}
 										</div>
 										{% ENDIF %}
 
@@ -1159,7 +1163,9 @@
 												<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 												{% ENDIF %}
 											</div>
+											{% IF index_page_new_goods.OPINION_RATING_CNT_ALL > 0 %}
 											<div class="ratings__count">{index_page_new_goods.OPINION_RATING_CNT_ALL}</div>
+											{% ENDIF %}
 										</div>
 										{% ENDIF %}
 						
@@ -1529,7 +1535,9 @@
 												<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 												{% ENDIF %}
 											</div>
+											{% IF index_page_goods.OPINION_RATING_CNT_ALL > 0 %}
 											<div class="ratings__count">{index_page_goods.OPINION_RATING_CNT_ALL}</div>
+											{% ENDIF %}
 										</div>
 										{% ENDIF %}
 						
@@ -2439,7 +2447,9 @@
 												<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 												{% ENDIF %}
 											</div>
+											{% IF recently_viewed_goods.OPINION_RATING_CNT_ALL > 0 %}
 											<div class="ratings__count">{recently_viewed_goods.OPINION_RATING_CNT_ALL}</div>
+											{% ENDIF %}
 										</div>
 										{% ENDIF %}
 						
@@ -3129,6 +3139,15 @@
 		document.createElement("picture");
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js" async></script>
+	<!-- Поддержка css переменных в IE https://jhildenbiddle.github.io/css-vars-ponyfill/#/ -->
+	<script src="https://unpkg.com/css-vars-ponyfill@2/dist/css-vars-ponyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-beautify@1/js/lib/beautify-css.min.js"></script> 
+	<script>
+		cssVars({
+  		// Treat all browsers as legacy
+			onlyLegacy: false, 
+		});
+	</script>
 	{% ENDIF %}
 
 	<!-- В случае их возникновения JS ошибок, отображаем их владельцу магазина для возможности отладки. Покупатели сообщений о JS ошибках не видят -->

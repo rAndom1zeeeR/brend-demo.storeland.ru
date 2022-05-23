@@ -2870,6 +2870,43 @@ function catalog() {
 		checkboxes.prop('checked', false).attr('checked', false);
 		$('.form__filters')[0].submit();
 	});
+	
+	// Фильтры открыть
+	$('.filters__icon').on('click', function (event) {
+		event.preventDefault();
+		$(this).toggleClass('opened');
+		$('#filters').toggleClass('opened');
+		$('#overlay').toggleClass('opened transparent');
+	});
+
+	// Фильтры поиск скрываем если меньше 4
+	$('.filter__list').each(function(){
+		var item = $(this).find('.filter__item').length;
+		var search = $(this).find('.filter__search');
+		item < 4 ? search.remove() : search.show()
+	});
+
+	// Фильтры поиск
+	$('.filter__search').on('input', function() {
+		var $items = $(this).next('.filter__items').children()
+		var $checkboxes = $items.find('label');
+		var itemsArray = $checkboxes.map(function () {return $(this).data('name').toLowerCase()}).toArray();
+		var str = $(this).val();
+		// Создаем массив результатов поиска
+		var resultArray = itemsArray.map(function(item, i){ if(item.indexOf(str) >= 0){ return i }else{ return -1; } }).filter(function(item){ return item >= 0; });
+		// Фильтруем результаты поиска
+		$items.hide().filter(function(item) {
+			var t = $(this);
+			return resultArray.some(function(el){ return el === t.index() })
+		}).show();
+		// Стрелочные функции не работают в ИЕ
+		// Создаем массив результатов поиска
+		// var resultArray = itemsArray.map((item, i) => item.indexOf(str) >= 0 ? i : -1).filter(item => item >= 0);
+		// Фильтруем результаты поиска
+		// $items.hide().filter(function () {
+		// 	return resultArray.some(el => el === $(this).index())
+		// }).show();
+	});
 
 }
 
@@ -2882,15 +2919,6 @@ function priceFilter() {
 			priceInputMin = $("#goods-filter-min-price"), // Поле ввода текущего значения цены "От"
 			priceInputMax = $("#goods-filter-max-price"), // Поле ввода текущего значения цены "До"
 			priceSubmitButtonBlock = $(".goodsFilterPriceSubmit");  // Блок с кнопкой, которую есть смысл нажимать только тогда, когда изменялся диапазон цен.
-
-	// Изменяет размер ячеек с ценой, т.к. у них нет рамок, есть смысл менять размеры полей ввода, чтобы они выглядили как текст
-	function priceInputsChangeWidthByChars() {
-		// Если есть блок указания минимальной цены
-		if(priceInputMin.length) {
-			priceInputMin.css('width', (priceInputMin.val().length*8 + 32) + 'px');
-			priceInputMax.css('width', (priceInputMax.val().length*8 + 32) + 'px');
-		}
-	}
 
 	// Слайдер, который используется для удобства выбора цены
 	priceSliderBlock.slider({
@@ -2905,7 +2933,6 @@ function priceFilter() {
 			priceInputMin.val( ui.values[ 0 ] );
 			priceInputMax.val( ui.values[ 1 ] );
 			priceSubmitButtonBlock.css('display', 'flex');
-			// priceInputsChangeWidthByChars();
 		}
 	});
 	// При изменении минимального значения цены
@@ -2916,7 +2943,6 @@ function priceFilter() {
 		}
 		priceSliderBlock.slider("values", 0, newVal);
 		priceSubmitButtonBlock.css('display', 'flex');
-		// priceInputsChangeWidthByChars();
 	});
 	// При изменении максимального значения цены
 	priceInputMax.keyup(function(){
@@ -2926,10 +2952,7 @@ function priceFilter() {
 		}
 		priceSliderBlock.slider("values", 1, newVal);
 		priceSubmitButtonBlock.css('display', 'flex');
-		// priceInputsChangeWidthByChars();
 	});
-	// Обновить размеры полей ввода диапазона цен
-	// priceInputsChangeWidthByChars();
 
 	// Активный фильтр цены
 	if (priceInputMin.val() > priceFilterMinAvailable || priceInputMax.val() < priceFilterMaxAvailable) {
@@ -2941,33 +2964,6 @@ function priceFilter() {
 		$('.toolbar').removeClass('has-filters');
 		$('#filters').removeClass('has-filters');
 	}
-	
-	// Фильтры открыть
-	$('.filters__icon').on('click', function (event) {
-		event.preventDefault();
-		$(this).toggleClass('opened');
-		$('#filters').toggleClass('opened');
-		$('#overlay').toggleClass('opened transparent');
-	});
-
-	// Фильтры поиск
-	$('.filter__search').on('input', function () {
-		var $items = $(this).next('.filter__items').children()
-		var $checkboxes = $items.find('label');
-		var itemsArray = $checkboxes.map(function () {return $(this).data('name').toLowerCase()}).toArray();
-		var str = $(this).val();
-		var resultArray = itemsArray.map((item, i) => item.indexOf(str) >= 0 ? i : -1).filter(item => item >= 0);
-		$items.hide().filter(function () {        
-			return resultArray.some(el => el === $(this).index())
-		}).show();
-	})
-	
-	// Фильтры поиск скрываем если меньше 4
-	$('.filter__list').each(function(){
-		var item = $(this).find('.filter__item').length;
-		var search = $(this).find('.filter__search');
-		item < 4 ? search.hide() : search.show()
-	});
 
 }
 
@@ -3208,6 +3204,7 @@ ajaxForms('#feedback','fancyFeedbackFlag','Запрос обратной свя�
 // Загрузка основных функций шаблона
 ///////////////////////////////////////
 $(document).ready(function(){
+	userAgent();
 	showPass();
 	openMenu();
 	addTo();
