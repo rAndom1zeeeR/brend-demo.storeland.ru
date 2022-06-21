@@ -2001,7 +2001,7 @@ function orderStart(){
 		data: quickFormData,
 		success: function(data) {
 			OrderAjaxBlock.html($(data).find('.fastOrderContent').wrap('<div></div>').html()).show('slow');
-			$('html, body').delay(400).animate({scrollTop : globalOrder.offset().top}, 800);
+			$('html, body').delay(400).animate({scrollTop : globalOrder.offset().top - 60}, 800);
 			showPass();
 			orderScripts();
 			orderScriptsSelect();
@@ -2623,9 +2623,9 @@ function pdtNew(){
 		responsiveRefreshRate: 100,
 		responsive: {
 			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
+			320:{items:2, autoHeight: true},
 			480:{items:2},
-			640:{items:2},
+			640:{items:3},
 			768:{items:3},
 			1024:{items:4},
 			1200:{items:5}
@@ -2662,9 +2662,9 @@ function pdtSales(){
 		responsiveRefreshRate: 100,
 		responsive: {
 			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
+			320:{items:2, autoHeight: true},
 			480:{items:2},
-			640:{items:2},
+			640:{items:3},
 			768:{items:3},
 			1024:{items:4},
 			1200:{items:4}
@@ -2753,9 +2753,9 @@ function viewed() {
 		responsiveRefreshRate: 100,
 		responsive: {
 			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
+			320:{items:2, autoHeight: true},
 			480:{items:2},
-			640:{items:2},
+			640:{items:3},
 			768:{items:3},
 			1024:{items:4},
 			1200:{items:5}
@@ -2890,7 +2890,7 @@ function catalog() {
 	$('.filter__search').on('input', function() {
 		var $items = $(this).next('.filter__items').children()
 		var $checkboxes = $items.find('label');
-		var itemsArray = $checkboxes.map(function () {return $(this).data('name').toLowerCase()}).toArray();
+		var itemsArray = $checkboxes.map(function() {return $(this).data('name').toLowerCase()}).toArray();
 		var str = $(this).val();
 		// Создаем массив результатов поиска
 		var resultArray = itemsArray.map(function(item, i){ if(item.indexOf(str) >= 0){ return i }else{ return -1; } }).filter(function(item){ return item >= 0; });
@@ -3091,16 +3091,29 @@ function monthNames() {
 
 // Функция вычисления скидки в корзине
 function cartSaleSum(){
-	var cartSumOld = parseInt($('.cartSumOld').attr('data-price'));
-	var cartSumNow = parseInt($('.cartSumNow').attr('data-price'));
-	if(cartSumOld > cartSumNow) {
-		var diff = cartSumOld - cartSumNow;
-		$('.addto__cart .cartSumOld').find('.num').text(addSpaces(diff)).show();
-	}else{
-		$('.addto__cart .cartSumOld').hide();
-	}
-}
+	var arr = []
+	// Находим разницу в цене
+	$('.addto__cart .addto__item').each(function(){
+		var priceNow = $(this).find('.price__now').attr('data-price')
+		var priceOld = $(this).find('.price__old').attr('data-price')
+		if(typeof(priceOld) !== 'undefined'){
+			if(priceOld > priceNow){
+				var diff = priceOld - priceNow;
+				// Добавляем разницу в массив
+				arr.push(diff);
+			}
+		}
+	});
 
+	// Итоговая сумма скидки
+	var sum = 0;
+	for (var i=0; i<arr.length; i++){
+		sum += arr[i]
+	}
+	
+	// Обновляем сумму скидки
+	$('.addto__cart .cartSumOld').find('.num').text(addSpaces(sum)).parent().show();
+}
 
 ///////////////////////////////////////
 /* Аякс Отправка формы без обновления страницы */
@@ -3199,6 +3212,44 @@ ajaxForms('.subscribe','subscribeFlag','Спасибо за обращение! 
 // "Обратный связь".
 ajaxForms('#feedback','fancyFeedbackFlag','Запрос обратной связи успешно отправлен администрации магазина','Вы уже отправляли запрос. Пожалуйста ожидайте.')
 
+///////////////////////////////////////
+// Функция изменения изображений при наведении на товар
+///////////////////////////////////////
+function hoverImage(){
+	$('.product__item').each(function(){
+		var t = $(this);
+		var imagesLen = t.find('.product__imgID').length
+		// если больше 2 изображений товара
+		if (imagesLen > 2){
+			// Создаем элементы при наведении на которые будут меняться изображения
+			t.find('.product__imgID').each(function(){
+				var href = $(this).data('href')
+				var id =  $(this).data('id')
+				// Создаем элементы
+				t.find('.product__hoverImages').append('<div class="product__hoverImage" data-id="'+ id +'" data-href="'+ href +'"></div>');
+				// Добавляем активный класс на элемент навигации
+				if (id == t.find('.product__img').data('id')){
+					t.find('.product__hoverImage').removeClass('active')
+					t.find('.product__hoverImage[data-id="' + id + '"]').addClass('active')
+				}
+			});
+
+			// Ховер эффект изменения изображения
+			t.find('.product__hoverImage').hover(function(){
+				var href = $(this).data('href')
+				var id =  $(this).data('id')
+				t.find('.product__img').attr({
+					'data-id': id,
+					'href': href
+				})
+				t.find('.product__img img').attr('src', href)
+				t.find('.product__hoverImage').removeClass('active')
+				$(this).addClass('active')
+			});
+		}
+
+	})
+}
 
 ///////////////////////////////////////
 // Загрузка основных функций шаблона
@@ -3213,6 +3264,7 @@ $(document).ready(function(){
 	toTop();
 	viewed();
 	cartSaleSum();
+	hoverImage();
   mainnav('header .mainnav', '1', 991);
   mainnav('footer .mainnav', '2', 991);
 	priceDiff('.product__item', 'percent');
@@ -3304,10 +3356,10 @@ function pdtBrands(){
 		responsiveRefreshRate: 100,
 		responsive: {
 			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
-			480:{items:2},
-			640:{items:2},
-			768:{items:2},
+			320:{items:2, autoHeight: true},
+			480:{items:3},
+			640:{items:3},
+			768:{items:4},
 			1024:{items:2},
 			1200:{items:2}
 		}
