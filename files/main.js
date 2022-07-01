@@ -3060,6 +3060,18 @@ function openMenu() {
       $('[data-content="'+ value +'"]').addClass('opened').slideDown('slow');
     }
   });
+
+	// Открытие поиска
+	$('.search__icon').on('click', function(event){
+		event.preventDefault();
+		if($(this).hasClass('active')){
+			$(this).removeClass('active')
+			$(this).parent().removeClass('active')
+		} else {
+			$(this).addClass('active')
+			$(this).parent().addClass('active')
+		}
+	})
 }
 
 // Функция удаления классов всех активных элементов

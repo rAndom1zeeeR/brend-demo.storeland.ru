@@ -474,9 +474,13 @@ h6 {font-size: 0.875rem;}
 #breadcrumbs ul li a:hover, #breadcrumbs ul li:last-child {color: var(--color-black);}
 #breadcrumbs ul li a i {vertical-align: middle;margin-right: .25rem;}
 #breadcrumbs::-webkit-scrollbar {width: 0;height: 0.25rem;}
-@media all and (max-width: 639px) {
+@media all and (min-width: 768px) {
+	#breadcrumbs .catalog {width: calc(25% + 1rem);}
+}
+@media all and (max-width: 767px) {
 	#breadcrumbs {background: linear-gradient(to bottom, #F1F1F1 2.75rem, #FFFFFF 2.75rem);margin-bottom: 1rem;padding-bottom: 0;}
 	#breadcrumbs ul {width: 100%;margin-top: 1.25rem;}
+	#breadcrumbs .catalog {width: 100%;}
 }
 
 
@@ -917,6 +921,7 @@ h6 {font-size: 0.875rem;}
 .zone__price {margin-top: .5rem;}
 
 /* Товар. Добавить Отзыв */
+.productView__opinion {margin-top: 2rem;}
 .opinion__content {width: 50%;padding-right: 1rem;}
 .opinion__addForm {width: 50%;padding-left: 1rem;position: sticky;position: -webkit-sticky;top: 0;}
 .opinion__addForm.opinion__empty {padding: 0;}
@@ -1251,8 +1256,13 @@ header .contacts__block-phone .contacts__link {font-size: 1.25rem;font-weight: 5
 }
 @media all and (max-width: 479px) {
 	.header__search {width: auto;}
-	.search__form {display: none;}
 	.search__icon {display: block;}
+	.search__form {display: none;}
+	.header__search.active {background-color: var(--color-black);width: 100%;max-width: 100%;position: absolute;top: -.25rem;left: 0;z-index: 2;}
+	.header__search.active .search__form {display: block;}
+	.header__search.active .search__icon {position: absolute;left: 0;top: .5rem;}
+	.header__search.active .search__icon i:before {content: '\e90b';}
+	.search__input {padding-left: 2.5rem;}
 }
 
 /**************************************/
@@ -1486,7 +1496,6 @@ footer .contacts__block-fancy {font-size: .75rem;font-weight: 300;padding: 0;}
 /**************************************/
 /*** Выпадающий каталог ***/
 /**************************************/
-#breadcrumbs .catalog {width: calc(25% + 1rem);}
 .catalog__icon {font-size: 1.125rem;font-weight: 500;text-transform: uppercase;}
 .catalog__icon i {font-size: 1.5rem;vertical-align: middle;margin-right: .5rem;}
 .catalog__icon:hover {cursor: pointer;}
@@ -1497,9 +1506,6 @@ footer .contacts__block-fancy {font-size: .75rem;font-weight: 300;padding: 0;}
 .catalog__social a {margin: .5rem 1rem;font-size: 1.25rem;color: var(--color-white);}
 .catalog__social a:hover {color: var(--color-secondary);}
 .catalog__social span {display: none;}
-@media all and (max-width: 639px) {
-	#breadcrumbs .catalog {width: 100%;}
-}
 
 
 /**************************************/
