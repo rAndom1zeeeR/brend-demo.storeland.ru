@@ -200,7 +200,7 @@ function compare() {
 	var owlCompare = $('.compare__tbody .owl-carousel');
 	owlCompare.owlCarousel({
 		items: 4,
-		margin: 16,
+		margin: 32,
 		loop: false,
 		rewind: false,
 		lazyLoad: true,
@@ -221,8 +221,8 @@ function compare() {
 		responsive: {
 			0:{items:2},
 			320:{items:2},
-			481:{items:2},
-			641:{items:3},
+			480:{items:2},
+			640:{items:3},
 			768:{items:3},
 			1024:{items:4},
 			1200:{items:4}
@@ -397,18 +397,21 @@ function priceDiff(obj,type) {
 ///////////////////////////////////////
 function goodsModRest() {
 	$('.goodsModRestValue').each(function(){
-		var value = $(this).data('value');
+		var value = $(this).attr('data-value');
 		if (value > 0 && value < 11) {
 			$(this).text('Мало');
 			$(this).css('opacity', '1');
+			$(this).parent().removeClass('alot').removeClass('zero');
 			$(this).parent().addClass('few');
 		}else if (value > 10) {
 			$(this).text('Много');
 			$(this).css('opacity', '1');
+			$(this).parent().removeClass('few').removeClass('zero');
 			$(this).parent().addClass('alot');
 		}else if (value == 0) {
 			$(this).text('Отсутствует');
 			$(this).css('opacity', '1');
+			$(this).parent().removeClass('few').removeClass('zero');
 			$(this).parent().addClass('zero');
 		}
 	});
@@ -1147,9 +1150,9 @@ function pageGoods() {
 		responsiveRefreshRate: 100,
 		responsive: {
 			0:{items:1},
-			320:{items:2},
-			480:{items:3},
-			640:{items:4},
+			320:{items:3, margin: 16},
+			480:{items:4, margin: 16},
+			640:{items:5},
 			768:{items:5},
 			1024:{items:3},
 			1200:{items:3}
@@ -1185,9 +1188,9 @@ function pageGoods() {
 			responsiveRefreshRate: 100,
 			responsive: {
 				0:{items:1, autoHeight: true},
-				320:{items:1, autoHeight: true},
+				320:{items:2, autoHeight: true},
 				480:{items:2},
-				640:{items:2},
+				640:{items:3},
 				768:{items:3},
 				1024:{items:4},
 				1200:{items:5}
@@ -1225,9 +1228,9 @@ function pageGoods() {
 			responsiveRefreshRate: 100,
 			responsive: {
 				0:{items:1, autoHeight: true},
-				320:{items:1, autoHeight: true},
+				320:{items:2, autoHeight: true},
 				480:{items:2},
-				640:{items:2},
+				640:{items:3},
 				768:{items:3},
 				1024:{items:4},
 				1200:{items:5}
@@ -1238,21 +1241,33 @@ function pageGoods() {
 	relatedGoods();
 
 	// Функция показать больше для Отзывов
-	var opinionContent = $('.opinion__content');
-	var opinionCount = opinionContent.find('.opinion__item').length;
-	var opinionVisible = opinionContent.find('.opinion__item:visible').length;
-	if(opinionCount<=opinionVisible){ opinionContent.find('.opinion__buttons').hide(); }
-	opinionContent.find('.opinion__buttons .showAll').on('click',function(event){
-		event.preventDefault();
-		if($(this).hasClass('active')){
-			$(this).removeClass('active').find('span').text("Показать все");
-			opinionContent.find('.opinion__item').removeClass('show');
-			$('html, body').animate({scrollTop : jQuery('.productView__opinion').offset().top - 60}, 600);
-		}else{
-			$(this).addClass('active').find('span').text("Скрыть все");
-			opinionContent.find('.opinion__item').addClass('show');
-		}
-	});
+	function opinionMore(){
+		var opinionContent = $('.opinion__content');
+		var opinionCount = $('.opinion__item').length;
+		var opinionVisible = $('.opinion__item:visible').length;
+		var opinionButtons = $('.opinion__buttons');
+		console.log('opinionCount', opinionCount)
+		console.log('opinionVisible', opinionVisible)
+		console.log('opinionVisible2', $('.opinion__item:visible').length)
+		if(opinionCount <= opinionVisible){ opinionButtons.hide(); }
+		opinionButtons.find('.showAll').on('click',function(event){
+			event.preventDefault();
+			if($(this).hasClass('active')){
+				$(this).removeClass('active').find('span').text("Показать все");
+				opinionContent.find('.opinion__item').removeClass('show');
+				$('html, body').animate({scrollTop : jQuery('.productView__opinion').offset().top - 60}, 600);
+			}else{
+				$(this).addClass('active').find('span').text("Скрыть все");
+				opinionContent.find('.opinion__item').addClass('show');
+			}
+		});
+	}
+
+	// Задержка перед включением функции
+	setTimeout(function () {
+		opinionMore();
+	}, 100);
+	
 
 	// Переключение для Положительный и Отрицательный отзыв
 	$('.generally label').on('click', function(event){
@@ -1571,14 +1586,17 @@ function goodsModification($container) {
 					goodsModQty.val("1").attr('max', 1);
 				}
 
+				
+				goodsModRest()
+
 				// Много Мало Нет
-				if(modificationRestValue > 0) {
-					goodsModRestValue.html('В наличии мало');
-				} else if(modificationRestValue > 10) {
-					goodsModRestValue.html('В наличии много');
-				} else {					
-					goodsModRestValue.html('Нет в наличии');
-				}
+				// if(modificationRestValue > 0) {
+				// 	goodsModRestValue.html('В наличии мало');
+				// } else if(modificationRestValue > 10) {
+				// 	goodsModRestValue.html('В наличии много');
+				// } else {					
+				// 	goodsModRestValue.html('Нет в наличии');
+				// }
 
 				// Покажем артикул модификации товара, если он указан
 				if(modificationArtNumber.length > 0) {
@@ -2627,7 +2645,7 @@ function pdtNew(){
 			480:{items:2},
 			640:{items:3},
 			768:{items:3},
-			1024:{items:4},
+			1024:{items:5},
 			1200:{items:5}
 		}
 	});
@@ -2666,7 +2684,7 @@ function pdtSales(){
 			480:{items:2},
 			640:{items:3},
 			768:{items:3},
-			1024:{items:4},
+			1024:{items:3},
 			1200:{items:4}
 		}
 	});
@@ -3000,11 +3018,13 @@ function openMenu() {
 	// Открытие Меню
   $('.mainnav__icon').on('click', function (event){
     event.preventDefault();
-		$(this).toggleClass('opened');
-		$('#mobmenu').toggleClass('opened');
-		$('#overlay').toggleClass('opened transparent');
-		$('.mobmenu__menu').addClass('opened')
-		$('.mobmenu__nav-item[data-open="menu"]').addClass('opened')
+		if($(this).hasClass('opened')){
+			$(this).removeClass('opened')
+			$(this).next('.mainnav').removeClass('opened dropdown__content')
+		} else {
+			$(this).addClass('opened')
+			$(this).next('.mainnav').addClass('opened dropdown__content')
+		}
   });
 
 	// Открытие элементов
@@ -3223,10 +3243,10 @@ function hoverImage(){
 		if (imagesLen > 2){
 			// Создаем элементы при наведении на которые будут меняться изображения
 			t.find('.product__imgID').each(function(){
-				var href = $(this).data('href')
-				var id =  $(this).data('id')
+				var image = $(this).attr('data-image')
+				var id =  $(this).attr('data-id')
 				// Создаем элементы
-				t.find('.product__hoverImages').append('<div class="product__hoverImage" data-id="'+ id +'" data-href="'+ href +'"></div>');
+				t.find('.product__hoverImages').append('<div class="product__hoverImage" data-image="'+ image +'" data-id="'+ id +'"></div>');
 				// Добавляем активный класс на элемент навигации
 				if (id == t.find('.product__img').data('id')){
 					t.find('.product__hoverImage').removeClass('active')
@@ -3236,13 +3256,13 @@ function hoverImage(){
 
 			// Ховер эффект изменения изображения
 			t.find('.product__hoverImage').hover(function(){
-				var href = $(this).data('href')
-				var id =  $(this).data('id')
+				var image = $(this).attr('data-image')
+				var id =  $(this).attr('data-id')
 				t.find('.product__img').attr({
-					'data-id': id,
-					'href': href
+					'image': image,
+					'data-id': id
 				})
-				t.find('.product__img img').attr('src', href)
+				t.find('.product__img img').attr('src', image)
 				t.find('.product__hoverImage').removeClass('active')
 				$(this).addClass('active')
 			});
