@@ -40,6 +40,12 @@
 				<span class="cartTotal__price {CURRENCY_CHAR_CODE}"><span class="cartSumDelivery" data-value="{CART_SUM_DELIVERY}">{CART_SUM_DELIVERY | money_format}</span></span>
 			</div>
 
+			<!-- Корзина: Минимальная сумма заказа -->
+			<div class="cartTotal__item cartTotal__min flex justify-between">
+				<div class="cartTotal__label cartTotal__min-label"><span>{% IF SETTINGS_STORE_ORDER_MIN_ORDER_PRICE > CART_SUM_NOW_WITH_DISCOUNT %}До мин. суммы заказа осталось{% ELSE %}Минимальная сумма заказа достингнута!{% ENDIF %}</span></div>
+				<div class="cartTotal__price cartTotal__min-price {CURRENCY_CHAR_CODE}" data-price="{SETTINGS_STORE_ORDER_MIN_ORDER_PRICE}">{SETTINGS_STORE_ORDER_MIN_ORDER_PRICE | money_format}</div>
+			</div>
+
 			<!-- Корзина: Итого -->
 			<div class="cartTotal__item total__cart flex justify-between">
 				<b>Итого: </b>

@@ -613,6 +613,7 @@ h6 {font-size: 0.875rem;}
 .products__list .product__price {margin-right: 2rem;}
 .products__list .product__name {height: auto;}
 .products__list .product__qty {margin-right: 2rem;}
+.products__list .has-mod .product__qty, .products__list .product__empty .product__qty {display: none;}
 @media all and (max-width: 639px) {
 	.products__list .product__image {width: 8rem;display: flex;flex-direction: column;}
 	.products__list .product__img {height: 8rem;order: 1;}

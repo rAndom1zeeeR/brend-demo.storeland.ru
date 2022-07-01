@@ -1958,6 +1958,8 @@ function cartQuantity(){
 						orderStart();
 						return false;
 					});
+					// Вызов функции быстрого заказа в корзине
+					cartMinSum();
 					if(qty > qtyVal){
 						$('.cart__error').remove();
 						$('.cartTable').before('<div class="cart__error warning">Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div>');
@@ -1985,6 +1987,8 @@ function cartDelete(e){
 			success:function(d){
 				$('.page-cartTable').html($(d).find('.page-cartTable').html());
 				cartQuantity();
+				// Вызов функции быстрого заказа в корзине
+				cartMinSum()
 				$('.startOrder').on('click', function() {
 					orderStart();
 					return false;
@@ -3283,6 +3287,22 @@ function hoverImage(){
 	})
 }
 
+
+// Функция вычисления остатка до минимальной суммы заказа
+function cartMinSum(){
+	var minPrice = parseInt($('.cartTotal__min-price').data('price'));
+	var totalSum = parseInt($('.cartSumTotal').data('value'));
+	if(minPrice > totalSum) {
+		var diff = minPrice - totalSum
+		$('.cartTotal__min-price').find('.num').text(addSpaces(diff))
+		$('.cartTotal__min').show();
+		$(".total__buttons button").attr('disabled', true).addClass('disabled');
+	}else{
+		$('.cartTotal__min').hide();
+		$(".total__buttons button").attr('disabled', false).removeClass('disabled');
+	}
+}
+
 ///////////////////////////////////////
 // Загрузка основных функций шаблона
 ///////////////////////////////////////
@@ -3297,6 +3317,7 @@ $(document).ready(function(){
 	viewed();
 	cartSaleSum();
 	hoverImage();
+	quantity();
   mainnav('header .mainnav', '1', 991);
   mainnav('footer .mainnav', '2', 991);
 	priceDiff('.product__item', 'percent');
