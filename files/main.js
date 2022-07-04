@@ -140,6 +140,9 @@ function mainnav(id,rows,media){
 	if(getClientWidth() > media){
 		var mainnav = $(id);
 		var overMenuExist = mainnav.find('.mainnav__overflow li').length;
+		// Восстановление классов для больших экранов
+		$('.mainnav__overflow').addClass('dropdown__content');
+		$('.mainnav__more').show();
 		if(overMenuExist){
 			mainnav.find('.mainnav__overflow li').removeClass('mainnav__replaced');
 			mainnav.find('.mainnav__more').remove();
@@ -189,6 +192,10 @@ function mainnav(id,rows,media){
 				return false;
 			}
 		}
+	}else{
+		// Удаление классов для маленьких экранов
+		$('.mainnav__overflow').removeClass('dropdown__content');
+		$('.mainnav__more').hide();
 	}
 }
 
@@ -3378,6 +3385,7 @@ $(window).resize(function(){
     $('body').removeClass('landscape');
   }
   mainnav('header .mainnav', '1', 991);
+  mainnav('footer .mainnav', '2', 991);
 });
 
 // Функция слайдера брендов
