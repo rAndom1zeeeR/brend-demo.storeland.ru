@@ -822,8 +822,6 @@
 				</div>
 			</div>
 		</div>
-		
-
 
 		<!-- Хиты продаж -->
 		{% IFNOT index_page_favorites_goods_empty %}
@@ -3013,47 +3011,16 @@
 			<i class="icon-arrow_up"></i>
 		</div>
 
+		<!-- Фиксированный Обратный звонок -->
+		<div id="callback">
+			<div class="callback__icon" data-fancybox data-src="#fancybox__notify">
+				<i class="icon-phone"></i>
+			</div>
+		</div>
+
 		<noindex>
 			<!-- Скрытое обновление корзины -->
 			<div class="hiddenUpdate" style="display: none;"></div>
-
-			<!-- Мобильное меню -->
-			<div id="mobmenu">
-				<div class="mobmenu__nav">
-					<div class="mobmenu__nav-item button-primary" data-open="catalog"><span>Каталог товаров</span></div>
-					<div class="mobmenu__nav-item button-primary opened active" data-open="menu"><span>Меню сайта</span></div>
-				</div>
-				<div class="mobmenu__content">
-					<div class="mobmenu__menu opened" data-content="menu">
-						<ul class="mainnav__list unstyled">
-							{% FOR menu %}
-								{% FOR header %}
-									{% FOR links %}
-									<li class="catalog__item">
-										<a class="mainnav__list-link {% IF menu.header.links.SELECTED %}active{%ENDIF%} {% IF menu.header.links.NAME = Каталог %}mainnav__catalog{%ENDIF%}" href="{menu.header.links.URL}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url">
-											<span itemprop="name">{menu.header.links.NAME}</span>
-										</a>
-									</li>
-									{% ENDFOR %}
-								{% ENDFOR %}
-							{% ENDFOR %}
-						</ul>
-					</div>
-					<div class="mobmenu__catalog" data-content="catalog">
-						<div class="catalog__items">
-							{% FOR catalog_full %}
-								{% IFNOT catalog_full.LEVEL = 0 && catalog_full.FIRST %}<div class="catalog__sub" data-level="{catalog_full.LEVEL}">{% ENDIF %}
-									<div class="catalog__item {% IF catalog_full.ISSET_VISIBLE_SUB %}parent{% ENDIF %} {% IF catalog_full.CURRENT_PARENT %}opened{% ENDIF %}" data-level="{catalog_full.LEVEL}" {% IF catalog_full.HIDE %}style="display: none;"{% ENDIF %}>
-										<a class="catalog__link flex {% IF catalog_full.CURRENT || catalog_full.CURRENT_PARENT %}opened{% ENDIF %}" href="{catalog_full.URL}" data-level="{catalog_full.LEVEL}">
-											<span class="catalog__name">{catalog_full.NAME}</span>
-											{% IF catalog_full.ISSET_VISIBLE_SUB %}<span class="catalog__open"></span>{% ENDIF %}
-										</a>
-									{% IF catalog_full.ISSET_SUB=0 %}</div>{% ENDIF %}
-								{% IF catalog_full.LAST %}{% FOR out %}</div> {% IFNOT catalog_full.out.LAST %}</div>{% ENDIF %}{% ENDFOR %}{% ENDIF %}
-							{% ENDFOR catalog_full %}
-					</div>
-				</div>
-			</div>
 
 			<!-- Обратный звонок в модальном окне -->
 			<div id="fancybox__callback" class="modal" style="display:none">
