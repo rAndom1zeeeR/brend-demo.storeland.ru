@@ -2554,8 +2554,8 @@ function coupons() {
 // Функции на главной Слайдер, Показать все
 ///////////////////////////////////////
 // Функция показать все для "Товары на главной"
-function pdtSale(){
-	var id = '#pdt__sale';
+function pdtSales(){
+	var id = '#pdt__sales';
 	var item = $(id).find('.product__item');
 	var visible = $(id).find('.product__item:visible').length;
 
@@ -2663,8 +2663,8 @@ function pdtNew(){
 }
 
 // Функция слайдера для "Новинки" на главной странице
-function pdtSales(){
-	var id = $('#pdt__sales');
+function pdtSale(){
+	var id = $('#pdt__sale');
 	var carousel = id.find('.owl-carousel');
 	var buttons = id.find('.owl-nav');
 	var dots = id.find('.owl-dots');
@@ -2833,6 +2833,10 @@ function counterDate() {
 	if(!id.length){
 		return false;
 	}
+
+	// Отображение счетчика в банере
+	$('.banner__counter').attr('data-expired', $('.product__counter').attr('data-expired'))
+	
 	// Перебираем каждый счетчик
 	id.each(function(){
 		var t = $(this);
@@ -2856,12 +2860,9 @@ function counterDate() {
 			if (distance < 0) {
 				clearInterval(x);
 				t.hide();
-			}else{
-				t.css({'display':'flex'});
-				t.prev().hide();
 			}
 		}, 1000);
-	})
+	});
 }
 
 ///////////////////////////////////////
