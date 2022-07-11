@@ -78,7 +78,7 @@
               <input type="hidden" name="form[goods_mod_id]" value="{goods_mod_info.GOODS_MOD_ID}" class="goodsDataMainModificationId" />
               <!-- Добавление товара в корзину -->
               <div class="compare__addCart product__addCart">
-                {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && goods_mod_info.REST_VALUE=0 %}
+                {% IF goods_mod_info.REST_VALUE=0 %}
                   <a class="add-notify button-empty" title="Уведомить" data-tooltip="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{goods_mod_info.NAME}" data-art="{goods_mod_info.ART_NUMBER}">
                     <i class="icon-notification"></i>
                     <span>Уведомить</span>

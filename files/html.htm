@@ -364,7 +364,7 @@
 								<div class="addto__empty">В корзине пока ничего нет</div>
 								<div class="addto__buttons flex justify-between">
 									<a class="button-link" href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" title="Очистить корзину"><span>Очистить все</span></a>
-									<a class="button-secondary" href="{CART_URL}" title="Перейти в Корзину"><span>В Корзину</span></a>
+									<a class="button-secondary cartOrder" href="{CART_URL}" title="Оформить заказ"><span>Оформить заказ</span></a>
 								</div>
 							</div>
 						</div>
@@ -543,7 +543,7 @@
 								<div class="loading">
 									<div class="products__grid flex-stretch owl-carousel">
 										{% FOR index_page_goods %}
-										<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_goods.ID}" itemscope itemtype="https://schema.org/Product">
+										<div class="product__item {% IF index_page_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_goods.ID}" itemscope itemtype="https://schema.org/Product">
 											<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form">
 												<input type="hidden" name="hash" value="{HASH}" />
 												<input type="hidden" name="form[goods_from]" value="{index_page_goods.GOODS_FROM}" />
@@ -772,7 +772,7 @@
 														<!-- Добавление товара в избранное и сравнение и в корзину -->
 														<div class="product__addCart">
 															<!-- Добавление в корзину -->
-															{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_goods.MAX_REST_VALUE=0 %}
+															{% IF index_page_goods.MAX_REST_VALUE=0 %}
 															<a class="add-notify button-empty"
 																title="Уведомить"
 																data-tooltip="Уведомить"
@@ -860,7 +860,7 @@
 							</a>
 						</div>
 						{% FOR index_page_sale_goods %}
-						<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_sale_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_sale_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_sale_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_sale_goods.ID}" itemscope itemtype="https://schema.org/Product">
+						<div class="product__item {% IF index_page_sale_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_sale_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_sale_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_sale_goods.ID}" itemscope itemtype="https://schema.org/Product">
 							<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form">
 								<input type="hidden" name="hash" value="{HASH}" />
 								<input type="hidden" name="form[goods_from]" value="{index_page_sale_goods.GOODS_FROM}" />
@@ -1109,7 +1109,7 @@
 										<!-- Добавление товара в избранное и сравнение и в корзину -->
 										<div class="product__addCart">
 											<!-- Добавление в корзину -->
-											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_sale_goods.MAX_REST_VALUE=0 %}
+											{% IF index_page_sale_goods.MAX_REST_VALUE=0 %}
 											<a class="add-notify button-empty"
 												title="Уведомить"
 												data-tooltip="Уведомить"
@@ -1179,7 +1179,7 @@
 					</div>
 					<div class="products__grid flex-stretch owl-carousel">
 						{% FOR index_page_new_goods %}
-						<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_new_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_new_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_new_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_new_goods.ID}" itemscope itemtype="https://schema.org/Product">
+						<div class="product__item {% IF index_page_new_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_new_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_new_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_new_goods.ID}" itemscope itemtype="https://schema.org/Product">
 							<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form">
 								<input type="hidden" name="hash" value="{HASH}" />
 								<input type="hidden" name="form[goods_from]" value="{index_page_new_goods.GOODS_FROM}" />
@@ -1408,7 +1408,7 @@
 										<!-- Добавление товара в избранное и сравнение и в корзину -->
 										<div class="product__addCart">
 											<!-- Добавление в корзину -->
-											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_new_goods.MAX_REST_VALUE=0 %}
+											{% IF index_page_new_goods.MAX_REST_VALUE=0 %}
 											<a class="add-notify button-empty"
 												title="Уведомить"
 												data-tooltip="Уведомить"
@@ -1550,7 +1550,7 @@
 							</a>
 						</div>
 						{% FOR index_page_favorites_goods %}
-						<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_favorites_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_favorites_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_favorites_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_favorites_goods.ID}" itemscope itemtype="https://schema.org/Product">
+						<div class="product__item {% IF index_page_favorites_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF index_page_favorites_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF index_page_favorites_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{index_page_favorites_goods.ID}" itemscope itemtype="https://schema.org/Product">
 							<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form">
 								<input type="hidden" name="hash" value="{HASH}" />
 								<input type="hidden" name="form[goods_from]" value="{index_page_favorites_goods.GOODS_FROM}" />
@@ -1779,7 +1779,7 @@
 										<!-- Добавление товара в избранное и сравнение и в корзину -->
 										<div class="product__addCart">
 											<!-- Добавление в корзину -->
-											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_favorites_goods.MAX_REST_VALUE=0 %}
+											{% IF index_page_favorites_goods.MAX_REST_VALUE=0 %}
 											<a class="add-notify button-empty"
 												title="Уведомить"
 												data-tooltip="Уведомить"
@@ -2456,7 +2456,7 @@
 		</section>
 
 		<!-- Вы смотрели -->
-		{% IFNOT recently_viewed_goods_empty %}
+		{% IFNOT recently_viewed_goods_empty && MOD_LNAME != cart %}
 		<section id="pdt__viewed" class="pdt__carousel">
 			<div class="container products__container">
 				<div class="block__title block__nav flex">
@@ -2466,7 +2466,7 @@
 				<div class="loading">
 					<div class="products__grid flex-stretch owl-carousel">
 						{% FOR recently_viewed_goods %}
-						<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF recently_viewed_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{recently_viewed_goods.ID}" itemscope itemtype="https://schema.org/Product">
+						<div class="product__item {% IF recently_viewed_goods.MAX_REST_VALUE=0 %}product__empty{% ENDIF %} {% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF recently_viewed_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{recently_viewed_goods.ID}" itemscope itemtype="https://schema.org/Product">
 							<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form">
 								<input type="hidden" name="hash" value="{HASH}" />
 								<input type="hidden" name="form[goods_from]" value="{recently_viewed_goods.GOODS_FROM}" />
@@ -2695,7 +2695,7 @@
 										<!-- Добавление товара в избранное и сравнение и в корзину -->
 										<div class="product__addCart">
 											<!-- Добавление в корзину -->
-											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}
+											{% IF recently_viewed_goods.MAX_REST_VALUE=0 %}
 											<a class="add-notify button-empty"
 												title="Уведомить"
 												data-tooltip="Уведомить"
@@ -3268,8 +3268,8 @@
 	</script>
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}debounce.js?design=THEMENAME"></script>
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}jquery-star-rating.js?design=THEMENAME"></script>
-	<script defer type="text/javascript" src="{ASSETS_JS_PATH}air-datepicker.js?design=THEMENAME"></script>
 	{% ENDIF %}
+	<script defer type="text/javascript" src="{ASSETS_JS_PATH}air-datepicker.js?design=THEMENAME"></script>
 
 	{% IF MOD_LNAME = cart || MOD_LNAME = order %}
 	<script type="text/javascript">
@@ -3284,7 +3284,6 @@
 		});
 	});
 	</script>
-	<script defer type="text/javascript" src="{ASSETS_JS_PATH}air-datepicker.js?design=THEMENAME"></script>
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}debounce.js?design=THEMENAME"></script>
 	{% ENDIF %}
 

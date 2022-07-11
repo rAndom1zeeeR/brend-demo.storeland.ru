@@ -1253,9 +1253,6 @@ function pageGoods() {
 		var opinionCount = $('.opinion__item').length;
 		var opinionVisible = $('.opinion__item:visible').length;
 		var opinionButtons = $('.opinion__buttons');
-		console.log('opinionCount', opinionCount)
-		console.log('opinionVisible', opinionVisible)
-		console.log('opinionVisible2', $('.opinion__item:visible').length)
 		if(opinionCount <= opinionVisible){ opinionButtons.hide(); }
 		opinionButtons.find('.showAll').on('click',function(event){
 			event.preventDefault();
@@ -2071,48 +2068,6 @@ function orderStart(){
 ///////////////////////////////////////
 /* Скрипты для оформления заказов */
 ///////////////////////////////////////
-// Быстрый заказ
-function quickOrder(formSelector) {
-	// Находим форму, которую отправляем на сервер, для добавления товара в корзину
-	var formBlock = $($(formSelector).get(0));
-	// Проверка на существование формы отправки запроса на добавление товара в корзину
-	if(1 > formBlock.length || formBlock.get(0).tagName != 'FORM') {
-		alert('Не удалось найти форму добавления товара в корзину');
-		return false;
-	}
-	// Получаем данные формы, которые будем отправлять на сервер
-	var formData = formBlock.serializeArray();
-	// Сообщаем серверу, что мы пришли через ajax запрос
-	formData.push({name: 'ajax_q', value: 1});
-	// Так же сообщим ему, что нужно сразу отобразить форму быстрого заказа
-	formData.push({name: 'fast_order', value: 1});
-	// Аяксом добавляем товар в корзину и вызываем форму быстрого заказа товара
-	$.ajax({
-		type    : "POST",
-		cache	  : false,
-		url		  : formBlock.attr('action'),
-		data		: formData,
-		success: function(data) {
-			$.fancybox.open(data, {
-				keyboard: false,
-				baseClass: "fastOrder",
-				afterShow: function(){
-          showPass();
-          orderScripts();
-          orderScriptsSelect();
-          coupons();
-          preload();
-					orderValidate();
-					// Стили для новых селектов
-					$(".form__phone").mask("+7 (999) 999-9999");
-				}
-			})
-
-		}
-	});
-	return false;
-}
-
 // Валидация формы в оформлении заказа
 function orderValidate() {
 	// Валидация формы
@@ -2123,7 +2078,8 @@ function orderValidate() {
 	});
 
 	// Выключение кнопки оформления заказа если не все поля заполнены
-	$(".fastOrder__form [required]").blur(function(){
+	$(".fastOrder__form [required]").on('input blur', function(){
+		console.log('blur change')
 		if($('.fastOrder__form').valid()) {
 			$(".total__buttons button").attr('title', 'Оформить заказ').removeClass('disabled');
 		} else {
@@ -2549,6 +2505,49 @@ function coupons() {
 
 }
 
+// Оформление заказа в выпадающей корзине
+function orderCart(){
+	var urlQuickForm = '/cart/add'; // адрес страницы с формой
+	// данные которые отарвятся на сервер чтобы получить только форму быстрого заказа без нижней части и верхней части сайта
+	var quickFormData = [
+		{name: 'ajax_q', value: 1},
+		{name: 'fast_order', value: 1}
+	];
+	$.ajax({
+		type: "POST",
+		cache: false,
+		url: urlQuickForm,
+		data: quickFormData,
+		success: function(data) {
+			$.fancybox.open(data, {
+				keyboard: false,
+				baseClass: "fastOrder",
+				afterShow: function(){
+          showPass();
+					orderScripts();
+          orderScriptsSelect();
+          coupons();
+          preload();
+          orderValidate();
+					// Стили для новых селектов
+					$(".form__phone").mask("+7 (999) 999-9999");
+					// Оформление заказа в выпадающей корзине
+					orderCartStart();
+				}
+			})
+		}
+	});
+}
+
+// Запуск функции оформления заказа
+function orderCartStart(){
+	// Оформление заказа в выпадающей корзине
+	$('.cartOrder').on('click', function(event){
+		event.preventDefault();
+		orderCart();
+	})
+}
+
 
 ///////////////////////////////////////
 // Функции на главной Слайдер, Показать все
@@ -2709,7 +2708,7 @@ function pdtNews() {
 	var dots = id.find('.owl-dots');
 	// Функция слайдера для Новостей
 	carousel.owlCarousel({
-		items: 3,
+		items: 4,
 		margin: 32,
 		loop: false,
 		rewind: true,
@@ -2731,12 +2730,12 @@ function pdtNews() {
 		responsiveRefreshRate: 100,
 		responsive: {
 			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
+			320:{items:2, autoHeight: true},
 			480:{items:2},
-			640:{items:2},
-			768:{items:2},
-			1024:{items:3},
-			1200:{items:3}
+			640:{items:3},
+			768:{items:3},
+			1024:{items:4},
+			1200:{items:4}
 		}
 	});
 
@@ -2836,7 +2835,7 @@ function counterDate() {
 
 	// Отображение счетчика в банере
 	$('.banner__counter').attr('data-expired', $('.product__counter').attr('data-expired'))
-	
+
 	// Перебираем каждый счетчик
 	id.each(function(){
 		var t = $(this);
@@ -3083,6 +3082,7 @@ function openMenu() {
 			$(this).addClass('active')
 			$(this).parent().addClass('active')
 		}
+		$('.search__reset').click();
 	})
 }
 
@@ -3295,7 +3295,6 @@ function hoverImage(){
 	})
 }
 
-
 // Функция вычисления остатка до минимальной суммы заказа
 function cartMinSum(){
 	var minPrice = parseInt($('.cartTotal__min-price').data('price'));
@@ -3329,6 +3328,7 @@ $(document).ready(function(){
   mainnav('header .mainnav', '1', 991);
   mainnav('footer .mainnav', '2', 991);
 	priceDiff('.product__item', 'percent');
+	orderCartStart();
 
 	// Удаление классов загрузки для элементов страницы
 	$('.loading').addClass('loaded');
