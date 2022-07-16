@@ -11,7 +11,7 @@
 
 			<!-- Корзина: Товары -->
 			<div class="cartTotal__item total__goods flex justify-between">
-				<span class="cartTotal__label"><span>Товары ({CART_COUNT_TOTAL})</span></span>
+				<span class="cartTotal__label"><span>Товары (<span class="count-cart">{CART_COUNT_TOTAL}</span>)</span></span>
 				<span class="cartTotal__price {CURRENCY_CHAR_CODE}"><span class="cartSumNow" data-value="{CART_SUM_NOW}">{CART_SUM_NOW | money_format}</span></span>
 			</div>
 
@@ -80,7 +80,7 @@
 				<input type="hidden" name="hash" value="{HASH}" />
 				<div class="cart__items">
 					{% FOR cart_items %}
-					<div class="cart__item flex" data-id="{cart_items.GOODS_MOD_ID}">
+					<div class="cart__item flex" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
 						<a class="cart__image flex-center" href="{cart_items.GOODS_URL}">
 							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}">
 						</a>
@@ -109,9 +109,9 @@
 								<div class="cart__price {CURRENCY_CHAR_CODE} {% IF cart_items.ORDER_LINE_PRICE_OLD > cart_items.ORDER_LINE_PRICE_NOW %}has-price-old{% ENDIF %}">
 									<!-- {% IF cart_items.ORDER_LINE_PRICE_OLD > 0 %}<div class="price__old">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</div>{% ENDIF %} -->
 									{% IF cart_items.ORDER_LINE_PRICE_OLD > cart_items.ORDER_LINE_PRICE_NOW %}
-									<div class="price__old">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</div>
+									<div class="price__old" data-price="{cart_items.ORDER_LINE_PRICE_OLD}">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</div>
 									{% ENDIF %}
-									<div class="price__now cartPriceTotal">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</div>
+									<div class="price__now cartPriceTotal" data-price="{cart_items.ORDER_LINE_PRICE_NOW}">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</div>
 								</div>
 								<div class="cart__qty">
 									<div class="qty flex">

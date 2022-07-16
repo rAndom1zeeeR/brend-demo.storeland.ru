@@ -319,8 +319,8 @@ h6 {font-size: 0.875rem;}
 .addto__content {width: calc(100% - 5rem);padding-left: 1rem;flex-grow: 1;}
 .addto__name {padding-right: 2rem;max-height: 2.5rem;overflow: hidden;display: block;}
 .addto__mod {color: gray;font-size: .75rem;margin-top: .625rem;}
-.addto__price {margin-top: .5rem;}
-.addto__price .price__now {display: inline-block;}
+.addto__inner {margin-top: .75rem;}
+.addto__price {margin-right: 1rem;}
 .addto__actions {position: absolute;right: 0;top: 0;}
 .addto__total {margin: 1rem 0;font-size: 1rem;display: none;}
 .addto__total-label {margin-right: .25rem;}
@@ -374,14 +374,14 @@ h6 {font-size: 0.875rem;}
 .compare__line:nth-child(-n+2) {border-bottom: 0;}
 .compare__cell {margin-bottom: 1rem;width: 100%;font-weight: bold;}
 .compare__cell input {margin-right: .5rem;}
-.compare__image {height: 260px;}
+.compare__image {height: 202px;}
 .compare__remove {width: 1.5rem;height: 1.5rem;line-height: 1.625rem;top: .5rem;right: .5rem;position: absolute;background-color: var(--color-lightgray);color: var(--color-white);border-radius: 100%;}
 .compare__remove:hover {color: var(--color-white);background-color: var(--color-black);}
 .compare__mod {margin-top: .5rem;font-size: .75rem;}
 .compare__addCart i {display: none;}
 .compare__showAll {display: none;}
 @media all and (max-width: 1199px) {
-	.compare__image {height: 216px;}
+	.compare__image {height: 166px;}
 }
 @media all and (max-width: 1023px) {
 	.compare__image {height: 214px;}
@@ -579,7 +579,7 @@ h6 {font-size: 0.875rem;}
 	.has-sidebar .product__img {height: 185px;}
 }
 @media all and (max-width: 1199px) {
-	.product__item {width: calc(25% - 2rem);}
+	/* .product__item {width: calc(25% - 2rem);} */
 	.product__img {height: 166px;}
 }
 @media all and (max-width: 1023px) {
@@ -1137,7 +1137,7 @@ h6 {font-size: 0.875rem;}
 	.cart__item {margin-bottom: 1rem;}
 	.cart__image {width: 6rem;}
 	.cart__content {width: calc(100% - 6rem);padding: .75rem 0 .75rem 1rem;}
-	.cart__remove {top: auto;bottom: .875rem;right: .75rem;}
+	.cart__remove {top: .875rem;left: .75rem;}
 }
 
 
@@ -1578,6 +1578,7 @@ footer .contacts__block-fancy {font-size: .75rem;font-weight: 300;padding: 0;}
 /**************************************/
 #callback {position: fixed;top: 40%;right: 0;z-index: 10;}
 .callback__icon {background-color: var(--color-black);color: var(--color-white);border-radius: 3rem 0 0 3rem;padding: .75rem 1.5rem;font-size: 1.5rem;cursor: pointer;}
+.callback__icon:hover {color: var(--color-secondary);}
 @media all and (max-width: 479px) {
 	.callback__icon {padding: .75rem 1rem;}
 }
