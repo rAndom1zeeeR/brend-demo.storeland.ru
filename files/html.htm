@@ -317,10 +317,10 @@
 									<span class="count-cart" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
 									<span class="cart__word">товар{CART_COUNT_TOTAL | gen_word_end("","а","ов")}</span>
 								</div>
-								<div class="addto__items">
-									<form action="{CART_URL}" method="post" class="cartForm">
-										<input type="hidden" name="fast_order" value="1" />
-										<input type="hidden" name="hash" value="{HASH}" />
+								<form action="{CART_URL}" method="post" class="cartForm">
+									<input type="hidden" name="fast_order" value="1" />
+									<input type="hidden" name="hash" value="{HASH}" />
+									<div class="addto__items">
 										{% FOR cart_items %}
 										<div class="addto__item flex" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
 											<a class="addto__image flex-center" href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}">
@@ -360,8 +360,8 @@
 											</div>
 										</div>
 										{% ENDFOR %}
-									</form>
-								</div>
+									</div>
+								</form>
 								<div class="addto__total {CURRENCY_CHAR_CODE} flex justify-between">
 									<div class="addto__total-item">
 										<span class="addto__total-label">Итого:</span>

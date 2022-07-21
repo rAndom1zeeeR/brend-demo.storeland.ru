@@ -966,6 +966,8 @@ function addCart() {
 				$('.hiddenUpdate').html(data);
 			}
 		});
+		// Запуск +- в корзине
+		cartAjaxQuantity();
 		return false;
 	});
 }
@@ -1979,12 +1981,15 @@ function cartQuantity(){
 
 // Счетчик +- в выпадающей корзине
 function cartAjaxQuantity(){
+	console.log('cartAjaxQuantity')
 	$('.addto__cart .qty__cart').off('change').on('change', $.debounce(300, function(){
 		var quantity = $(this);
 		var id = quantity.closest('.addto__item').data('id');
 		var mod = quantity.closest('.addto__item').data('mod-id');
 		var formData = $('.cartForm').serializeArray();
 		formData.push({name: 'only_body', value: 1});
+
+		console.log('quantity', quantity)
 
 		// Количество
 		var val = parseInt(quantity.val());
