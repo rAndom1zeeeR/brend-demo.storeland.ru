@@ -1955,7 +1955,7 @@ function cartQuantity(){
 					item = $('.cart__item[data-id="' + id + '"]');
 					item.find('.price__now').html($(data).find('.cart__item[data-id="' + id + '"] .price__now').html());
 					item.find('.price__old').html($(data).find('.cart__item[data-id="' + id + '"] .price__old').html());
-					$('.cartTotal').html($(d).find('.cartTotal').html());
+					$('.cartTotal').html($(data).find('.cartTotal').html());
 					qtyVal = $(data).find('.cart__item[data-id="' + id + '"] .qty__cart').val();
 					// Вызов функции быстрого заказа в корзине
 					$('.startOrder').on('click', function() {
@@ -2071,8 +2071,8 @@ function cartDelete(e){
 		$.ajax({
 			url:url,
 			cache:false,
-			success:function(d){
-				$('.page-cartTable').html($(d).find('.page-cartTable').html());
+			success:function(data){
+				$('.page-cartTable').html($(data).find('.page-cartTable').html());
 				cartQuantity();
 				// Вызов функции быстрого заказа в корзине
 				cartMinSum()
@@ -3384,13 +3384,14 @@ function cartMinSum(){
 	if(minPrice > totalSum) {
 		var diff = minPrice - totalSum
 		$('.cartTotal__min-price').find('.num').text(addSpaces(diff))
-		$('.cartTotal__min').show();
 		$(".total__buttons button").attr('disabled', true).addClass('disabled');
+		$('.cartTotal__min').show();
 	}else{
-		$('.cartTotal__min').hide();
 		$(".total__buttons button").attr('disabled', false).removeClass('disabled');
+		$('.cartTotal__min').hide();
 	}
 }
+
 
 ///////////////////////////////////////
 // Загрузка основных функций шаблона

@@ -1586,7 +1586,7 @@ footer .contacts__block-fancy {font-size: .75rem;font-weight: 300;padding: 0;}
 /**************************************/
 #callback {position: fixed;top: 40%;right: 0;z-index: 10;}
 .callback__icon {background-color: var(--color-black);color: var(--color-white);border-radius: 3rem 0 0 3rem;padding: .75rem 1.5rem;font-size: 1.5rem;cursor: pointer;}
-.callback__icon:hover {color: var(--color-secondary);}
+.callback__icon:hover {background-color: var(--color-secondary);}
 @media all and (max-width: 479px) {
 	.callback__icon {padding: .75rem 1rem;}
 }
